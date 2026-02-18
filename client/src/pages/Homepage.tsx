@@ -80,7 +80,7 @@ const merchProducts = [
     title: "Splenda ECR Limited Edition Die-Cast Model Car - 1:18 Scale",
     price: "$79.00",
     ellipse: "/figmaAssets/ellipse-936.svg",
-    left: "left-[calc(50.00%_-_199px)]",
+    left: "left-[calc(50%_-_199px)]",
   },
   {
     title: "ECR Limited Edition Racing Hat - Blue",
@@ -110,371 +110,349 @@ const footerSocialIcons = [
 
 export const Homepage = () => {
   return (
-    <div className="bg-white relative w-full min-h-[7355px] overflow-hidden" data-testid="page-homepage">
-      {/* Background Groups */}
-      <img
-        className="absolute top-[1518px] left-[-236px] w-[1881px] h-[1423px] max-w-none pointer-events-none"
-        src="/figmaAssets/group-1171275595.png"
-        alt=""
-        data-testid="img-bg-group-1"
-      />
-      <img
-        className="absolute top-[3893px] left-[calc(50.00%_-_903px)] w-[1806px] h-[1493px] max-w-none pointer-events-none"
-        src="/figmaAssets/rectangle-34625688.svg"
-        alt=""
-        data-testid="img-bg-rectangle"
-      />
-      <img
-        className="absolute top-[4882px] left-[-117px] w-[1955px] h-[1479px] max-w-none pointer-events-none"
-        src="/figmaAssets/group-1171275483.png"
-        alt=""
-        data-testid="img-bg-group-2"
-      />
-
+    <div className="bg-white relative w-full overflow-x-hidden" data-testid="page-homepage">
       {/* Hero Section */}
-      <img
-        className="absolute top-0 left-0 w-full h-[995px] object-cover pointer-events-none"
-        src="/figmaAssets/subtract.png"
-        alt=""
-        data-testid="img-hero-subtract"
-      />
-
-      <header className="absolute top-0 left-1/2 -translate-x-1/2 w-[1440px] h-[90px] bg-white flex items-center px-[100px] justify-between z-50" data-testid="header-main">
-        <img
-          className="w-[313px] h-[37px]"
-          src="/figmaAssets/group-1171275242.svg"
-          alt="Splenda Logo"
-          data-testid="img-logo"
+      <section className="relative w-full min-h-screen flex flex-col items-start" data-testid="section-hero">
+        {/* Hero Background */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
+          style={{ backgroundImage: "url('/figmaAssets/subtract.png')" }}
+          data-testid="img-hero-bg"
         />
-        <nav className="flex gap-8 items-center" data-testid="nav-main">
-          {navigationItems.map((item, index) => (
-            <Button
-              key={index}
-              variant="ghost"
-              className="text-brand-color3 text-lg font-normal hover:bg-transparent p-0"
-              data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-            >
-              {item.label}
-              {item.hasDropdown && <ChevronDownIcon className="ml-1 w-4 h-4" />}
-            </Button>
-          ))}
-        </nav>
-        <div className="relative w-[398px] h-[53px]">
-          <div className="absolute inset-0 bg-white border border-brand-color3 rounded-full shadow-[2px_2px_0px_#1e3e7c]" />
-          <Input
-            className="absolute inset-0 pl-6 pr-12 bg-transparent border-0 focus-visible:ring-0 text-brand-color3 placeholder:text-brand-color3/70"
-            placeholder="Looking for something sweet..."
-            data-testid="input-search-header"
+
+        {/* Navbar - Overlaying Hero */}
+        <header className="absolute top-0 left-0 w-full h-[90px] flex items-center px-[100px] justify-between z-50 bg-transparent" data-testid="header-main">
+          <img
+            className="w-[313px] h-[37px]"
+            src="/figmaAssets/group-1171275242.svg"
+            alt="Splenda Logo"
+            data-testid="img-logo"
           />
-          <SearchIcon className="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-brand-color3" />
+          <nav className="flex gap-12 items-center" data-testid="nav-main">
+            {navigationItems.map((item, index) => (
+              <Button
+                key={index}
+                variant="ghost"
+                className="text-brand-color3 text-xl font-medium hover:bg-white/10 p-0 h-auto"
+                data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+              >
+                {item.label}
+                {item.hasDropdown && <ChevronDownIcon className="ml-1 w-5 h-5" />}
+              </Button>
+            ))}
+          </nav>
+          <div className="relative w-[400px] h-[53px]">
+            <div className="absolute inset-0 bg-white border border-brand-color3 rounded-full shadow-[2px_2px_0px_#1e3e7c]" />
+            <Input
+              className="absolute inset-0 pl-6 pr-12 bg-transparent border-0 focus-visible:ring-0 text-brand-color3 placeholder:text-brand-color3/70 text-lg"
+              placeholder="Looking for something sweet..."
+              data-testid="input-search-header"
+            />
+            <SearchIcon className="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-brand-color3" />
+          </div>
+        </header>
+
+        {/* Hero Content Area */}
+        <div className="relative flex-1 flex flex-col justify-end pb-[15vh] px-[100px] z-10">
+          <Button 
+            className="w-[386px] h-[80px] bg-brand-color2 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-[28px] font-bold hover:bg-brand-color2/90 active:scale-95 transition-all"
+            data-testid="button-view-sweeteners"
+          >
+            VIEW SWEETENERS
+          </Button>
         </div>
-      </header>
+      </section>
 
-      <div className="absolute top-[702px] left-[100px]">
-        <Button 
-          className="w-[386px] h-[80px] bg-brand-color2 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-[28px] font-bold hover:bg-brand-color2/90"
-          data-testid="button-view-sweeteners"
-        >
-          VIEW SWEETENERS
-        </Button>
-      </div>
-
-      {/* Quiz Section */}
-      <div className="absolute top-[1080px] left-[76px] w-[1140px] h-[554px]" data-testid="section-quiz">
+      {/* Main Content Container - Flowing smoothly */}
+      <div className="relative w-full">
+        {/* Background Decorative Elements */}
         <img
-          className="absolute top-1 left-0 w-[624px] h-[443px]"
-          src="/figmaAssets/updated-product-quiz-image-1.png"
+          className="absolute top-[500px] left-[-236px] w-[1881px] h-[1423px] max-w-none pointer-events-none opacity-50"
+          src="/figmaAssets/group-1171275595.png"
           alt=""
-          data-testid="img-quiz-main"
         />
-        <div className="absolute top-[89px] left-[672px] w-[468px]">
-          <h2 className="text-brand-color3 text-[56px] font-bold leading-tight mb-4" data-testid="text-quiz-title">
-            FIND YOUR PERFECT SPLENDA
-          </h2>
-          <p className="text-brand-color3 text-xl font-medium mb-8" data-testid="text-quiz-description">
-            Take a short quiz to find out which Splenda products are right for
-            you.
-          </p>
-          <Button 
-            className="w-[162px] h-[60px] bg-brand-color3 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-lg font-bold"
-            data-testid="button-take-quiz"
-          >
-            TAKE QUIZ
-          </Button>
-        </div>
-      </div>
 
-      {/* Categories */}
-      <div className="absolute top-[1802px] left-1/2 -translate-x-1/2 text-center w-full" data-testid="section-categories">
-        <h2 className="text-brand-color3 text-[56px] font-bold mb-2">
-          HAPPIER, HEALTHIER, LONGER LIVES
-        </h2>
-        <p className="text-brand-color3 text-[28px] font-medium">
-          The only low calorie sweetener made in the USA
-        </p>
-      </div>
-
-      <div className="absolute top-[1988px] left-1/2 -translate-x-1/2 flex gap-4">
-        {categoryTabs.map((tab, index) => (
-          <Button
-            key={index}
-            variant={tab.active ? "default" : "outline"}
-            className={`h-[53px] px-8 rounded-full text-xl font-bold border-brand-color3 ${
-              tab.active
-                ? "bg-[#ebfaff] text-brand-color3 shadow-[2px_2px_0px_#000714]"
-                : "text-brand-color3"
-            }`}
-            data-testid={`button-category-${tab.label.toLowerCase()}`}
-          >
-            {tab.label}
-          </Button>
-        ))}
-      </div>
-
-      {/* Products Grid */}
-      <div className="absolute top-[2081px] left-[100px] flex gap-10" data-testid="grid-products">
-        {productImages.map((product, index) => (
-          <div key={index} className="relative">
+        {/* Quiz Section - Fixed Spacing */}
+        <section className="relative px-[100px] py-24 flex items-center gap-24 bg-white" data-testid="section-quiz">
+          <div className="relative w-[624px] shrink-0">
             <img
-              src={product.src}
-              className="w-[400px] h-[450px] rounded-[30px] object-cover"
+              className="w-full h-auto rounded-[30px]"
+              src="/figmaAssets/updated-product-quiz-image-1.png"
               alt=""
-              data-testid={`img-product-${index}`}
+              data-testid="img-quiz-main"
             />
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
-              <Button 
-                className="h-[53px] px-8 bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-lg font-bold"
-                data-testid={`button-product-badge-${index}`}
-              >
-                {product.badge}
-              </Button>
-            </div>
+            <img
+              className="absolute -bottom-12 -right-12 w-[189px] h-[194px] rotate-[-18deg]"
+              src="/figmaAssets/cyan-2--1--1.png"
+              alt=""
+            />
           </div>
-        ))}
-      </div>
-
-      {/* Recipes Section */}
-      <div className="absolute top-[2941px] left-1/2 -translate-x-1/2 text-center w-full" data-testid="section-recipes">
-        <h2 className="text-brand-color3 text-[56px] font-bold mb-8">
-          EXPLORE DELICIOUS RECIPES
-        </h2>
-        <div className="relative w-[398px] h-[60px] mx-auto mb-16">
-          <div className="absolute inset-0 bg-white border border-brand-color3 rounded-full shadow-[2px_2px_0px_#1e3e7c]" />
-          <Input
-            className="absolute inset-0 pl-6 pr-12 bg-transparent border-0 focus-visible:ring-0 text-brand-color3"
-            placeholder="Looking for something sweet..."
-            data-testid="input-search-recipes"
-          />
-          <SearchIcon className="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-brand-color3" />
-        </div>
-      </div>
-
-      <div className="absolute top-[3129px] left-[100px] flex gap-10" data-testid="grid-recipes">
-        {recipeCards.map((recipe, index) => (
-          <div key={index} className="w-[400px]">
-            <div className="relative mb-6">
-              <img
-                src={recipe.image}
-                className="w-[400px] h-[450px] rounded-[30px] object-cover"
-                alt=""
-                data-testid={`img-recipe-${index}`}
-              />
-              <Badge 
-                className="absolute top-4 left-4 bg-brand-color2 text-white border-0 text-xs px-4 py-2 rounded-full"
-                data-testid={`badge-recipe-${index}`}
-              >
-                {recipe.badge}
-              </Badge>
-            </div>
-            <h3 
-              className="text-brand-color3 text-[28px] font-bold text-center leading-tight"
-              data-testid={`text-recipe-title-${index}`}
+          <div className="max-w-[500px]">
+            <h2 className="text-brand-color3 text-[56px] font-bold leading-tight mb-6" data-testid="text-quiz-title">
+              FIND YOUR PERFECT SPLENDA
+            </h2>
+            <p className="text-brand-color3 text-xl font-medium mb-10">
+              Take a short quiz to find out which Splenda products are right for
+              you.
+            </p>
+            <Button 
+              className="w-[162px] h-[60px] bg-brand-color3 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-lg font-bold"
+              data-testid="button-take-quiz"
             >
-              {recipe.title}
-            </h3>
+              TAKE QUIZ
+            </Button>
           </div>
-        ))}
-      </div>
+        </section>
 
-      <div className="absolute top-[3690px] left-1/2 -translate-x-1/2">
-        <Button 
-          className="w-[142px] h-[60px] bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-lg font-bold"
-          data-testid="button-more-recipes"
-        >
-          RECIPES
-        </Button>
-      </div>
+        {/* Categories Section */}
+        <section className="relative py-24 bg-[#f8f9fa]" data-testid="section-categories">
+          <div className="text-center mb-16">
+            <h2 className="text-brand-color3 text-[56px] font-bold mb-4">
+              HAPPIER, HEALTHIER, LONGER LIVES
+            </h2>
+            <p className="text-brand-color3 text-[28px] font-medium">
+              The only low calorie sweetener made in the USA
+            </p>
+          </div>
 
-      {/* Instagram Section */}
-      <div className="absolute top-[3895px] left-1/2 -translate-x-1/2 text-center w-full" data-testid="section-instagram">
-        <img
-          className="mx-auto h-[116px] mb-8"
-          src="/figmaAssets/instagram-2.svg"
-          alt="Instagram"
-          data-testid="img-instagram-header"
-        />
-        <div className="flex gap-4 overflow-hidden px-[100px]" data-testid="grid-instagram">
-          {instagramImages.map((img, index) => (
-            <img
-              key={index}
-              src={img.src}
-              className="w-[400px] h-[500px] rounded-[30px] object-cover"
-              alt=""
-              data-testid={`img-instagram-${index}`}
-            />
-          ))}
-        </div>
-        <div className="mt-12">
-          <Button 
-            className="h-[60px] px-8 bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-lg font-bold inline-flex items-center gap-2"
-            data-testid="button-instagram-handle"
-          >
-            <img className="w-9 h-9" src="/figmaAssets/frame-5.svg" alt="" />
-            @SPLENDA
-          </Button>
-        </div>
-      </div>
-
-      {/* Impact Counter */}
-      <div className="absolute top-[5996px] left-1/2 -translate-x-1/2 text-center" data-testid="section-impact">
-        <Badge
-          variant="outline"
-          className="mb-8 border-brand-color1 text-brand-color1 text-[22px] font-bold px-8 py-3 rounded-full border-2"
-          data-testid="badge-impact-year"
-        >
-          IN THE US SINCE 1999
-        </Badge>
-        <div className="mb-8 flex flex-col items-center gap-2">
-          <img src="/figmaAssets/csf-2.svg" className="h-14" alt="" />
-          <img src="/figmaAssets/csf-2.svg" className="h-14" alt="" />
-        </div>
-        <div className="bg-white border-2 border-black rounded-full px-12 py-6 shadow-[4px_4px_0px_#000] inline-block -rotate-1">
-          <span 
-            className="text-brand-color2 text-[48px] font-bold tracking-wider"
-            data-testid="text-sugar-saved-count"
-          >
-            1,240,285,547,996
-          </span>
-        </div>
-        <p className="mt-8 text-brand-color3 text-2xl font-bold">
-          GRAMS OF SUGAR SAVED
-        </p>
-      </div>
-
-      {/* Merch Section */}
-      <div className="absolute top-[5084px] left-[100px] w-[1240px]" data-testid="section-merch">
-        <img
-          src="/figmaAssets/merch-shop-96-1.svg"
-          className="h-[85px] mb-12"
-          alt="Merch Shop"
-          data-testid="img-merch-header"
-        />
-        <div className="flex justify-between items-start" data-testid="grid-merch">
-          {merchProducts.map((product, index) => (
-            <div key={index} className="w-[400px] text-center">
-              <div className="relative h-[300px] mb-8">
-                <img
-                  src={product.ellipse}
-                  className="absolute inset-0 w-full h-full"
-                  alt=""
-                  data-testid={`img-merch-ellipse-${index}`}
-                />
-              </div>
-              <h3 
-                className="text-brand-color1 text-[28px] font-bold mb-4 min-h-[56px]"
-                data-testid={`text-merch-title-${index}`}
+          <div className="flex justify-center gap-4 mb-16">
+            {categoryTabs.map((tab, index) => (
+              <Button
+                key={index}
+                variant={tab.active ? "default" : "outline"}
+                className={`h-[53px] px-8 rounded-full text-xl font-bold border-brand-color3 ${
+                  tab.active
+                    ? "bg-[#ebfaff] text-brand-color3 shadow-[2px_2px_0px_#000714]"
+                    : "text-brand-color3"
+                }`}
+                data-testid={`button-category-${tab.label.toLowerCase()}`}
               >
-                {product.title}
-              </h3>
-              <p 
-                className="text-brand-color1 text-xl font-bold mb-6"
-                data-testid={`text-merch-price-${index}`}
-              >
-                {product.price}
-              </p>
-              <Button 
-                className="w-[203px] h-[53px] bg-brand-color1 text-brand-color3 font-bold rounded-full border border-black shadow-[2px_2px_0px_#000]"
-                data-testid={`button-merch-view-${index}`}
-              >
-                VIEW PRODUCT
+                {tab.label}
               </Button>
+            ))}
+          </div>
+
+          <div className="flex justify-center gap-10 px-[100px]">
+            {productImages.map((product, index) => (
+              <div key={index} className="relative group cursor-pointer">
+                <img
+                  src={product.src}
+                  className="w-[400px] h-[450px] rounded-[30px] object-cover border-2 border-transparent hover:border-brand-color3 transition-all"
+                  alt=""
+                />
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  <Button className="h-[53px] px-8 bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-lg font-bold">
+                    {product.badge}
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Recipes Section */}
+        <section className="relative py-24 px-[100px] bg-white" data-testid="section-recipes">
+          <div className="text-center mb-16">
+            <h2 className="text-brand-color3 text-[56px] font-bold mb-8">
+              EXPLORE DELICIOUS RECIPES
+            </h2>
+            <div className="relative w-[398px] h-[60px] mx-auto">
+              <div className="absolute inset-0 bg-white border border-brand-color3 rounded-full shadow-[2px_2px_0px_#1e3e7c]" />
+              <Input
+                className="absolute inset-0 pl-6 pr-12 bg-transparent border-0 focus-visible:ring-0 text-brand-color3"
+                placeholder="Looking for something sweet..."
+                data-testid="input-search-recipes"
+              />
+              <SearchIcon className="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-brand-color3" />
             </div>
-          ))}
-        </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-10 mb-16">
+            {recipeCards.map((recipe, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className="relative mb-8 w-full">
+                  <img
+                    src={recipe.image}
+                    className="w-full h-[450px] rounded-[30px] object-cover"
+                    alt=""
+                  />
+                  <Badge className="absolute top-6 left-6 bg-brand-color2 text-white border-0 text-xs px-6 py-2.5 rounded-full font-bold">
+                    {recipe.badge}
+                  </Badge>
+                </div>
+                <h3 className="text-brand-color3 text-[28px] font-bold text-center leading-tight max-w-[300px]">
+                  {recipe.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center">
+            <Button className="w-[162px] h-[60px] bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-lg font-bold">
+              RECIPES
+            </Button>
+          </div>
+        </section>
+
+        {/* Instagram Section */}
+        <section className="relative py-24 bg-[#f8f9fa]" data-testid="section-instagram">
+          <div className="text-center mb-16">
+            <img
+              className="mx-auto h-[116px] mb-8"
+              src="/figmaAssets/instagram-2.svg"
+              alt="Instagram"
+            />
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-8 scrollbar-hide px-[100px]">
+            {instagramImages.map((img, index) => (
+              <img
+                key={index}
+                src={img.src}
+                className="w-[400px] h-[500px] rounded-[30px] object-cover shrink-0"
+                alt=""
+              />
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button className="h-[60px] px-8 bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-lg font-bold inline-flex items-center gap-3">
+              <img className="w-9 h-9" src="/figmaAssets/frame-5.svg" alt="" />
+              @SPLENDA
+            </Button>
+          </div>
+        </section>
+
+        {/* Merch Section */}
+        <section className="relative py-24 px-[100px] bg-white overflow-hidden" data-testid="section-merch">
+          <img
+            src="/figmaAssets/merch-shop-96-1.svg"
+            className="h-[85px] mb-20 mx-auto"
+            alt="Merch Shop"
+          />
+          <div className="grid grid-cols-3 gap-12">
+            {merchProducts.map((product, index) => (
+              <div key={index} className="flex flex-col items-center text-center">
+                <div className="relative w-full h-[350px] mb-12 flex items-center justify-center">
+                  <img
+                    src={product.ellipse}
+                    className="absolute inset-0 w-full h-full object-contain -rotate-6"
+                    alt=""
+                  />
+                  {/* Product image would go here if available, using ellipse as backdrop */}
+                </div>
+                <h3 className="text-brand-color3 text-[28px] font-bold mb-4 min-h-[84px] max-w-[300px]">
+                  {product.title}
+                </h3>
+                <p className="text-brand-color1 text-2xl font-black mb-8 px-4 py-1 bg-brand-color3 rounded-lg inline-block">
+                  {product.price}
+                </p>
+                <Button className="w-[203px] h-[53px] bg-brand-color1 text-brand-color3 font-bold rounded-full border border-black shadow-[2px_2px_0px_#000] hover:scale-105 transition-transform">
+                  VIEW PRODUCT
+                </Button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Impact Counter Section */}
+        <section className="relative py-32 bg-brand-color3 text-center" data-testid="section-impact">
+          <Badge
+            variant="outline"
+            className="mb-12 border-brand-color1 text-brand-color1 text-[24px] font-bold px-10 py-4 rounded-full border-2"
+          >
+            IN THE US SINCE 1999
+          </Badge>
+          <div className="mb-12 flex flex-col items-center gap-4">
+            <img src="/figmaAssets/csf-2.svg" className="h-16 brightness-0 invert" alt="" />
+            <img src="/figmaAssets/csf-2.svg" className="h-16 brightness-0 invert" alt="" />
+          </div>
+          <div className="bg-white border-2 border-black rounded-2xl px-16 py-8 shadow-[8px_8px_0px_#000] inline-block -rotate-1 mb-12">
+            <span className="text-brand-color2 text-[64px] font-black tracking-widest font-mono">
+              1,240,285,547,996
+            </span>
+          </div>
+          <p className="text-white text-3xl font-black tracking-wider uppercase">
+            GRAMS OF SUGAR SAVED
+          </p>
+        </section>
       </div>
 
       {/* Footer */}
-      <footer className="absolute bottom-0 left-0 w-full bg-[#f8f9fa] pt-24 pb-12 px-[100px]" data-testid="footer-main">
-        <div className="grid grid-cols-5 gap-12 mb-24">
-          <div className="col-span-1">
+      <footer className="relative bg-[#f1f3f5] pt-32 pb-16 px-[100px]" data-testid="footer-main">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-16 mb-24">
+          <div className="md:col-span-1">
             <img
               src="/figmaAssets/group-1171275242.svg"
-              className="w-full mb-8"
+              className="w-[200px] mb-10"
               alt="Logo"
-              data-testid="img-footer-logo"
             />
-            <p className="text-brand-color3 text-sm mb-6">
+            <p className="text-brand-color3/80 text-base mb-8 leading-relaxed">
               Join the Splenda Recipe Club and get delicious recipes and baking
               tips delivered straight to your inbox.
             </p>
-            <div className="relative mb-8">
+            <div className="relative max-w-[300px]">
               <Input
-                className="rounded-full border-2 border-black pr-24 h-[50px]"
+                className="rounded-full border-2 border-black pr-28 h-[56px] bg-white focus-visible:ring-brand-color2"
                 placeholder="Email..."
-                data-testid="input-footer-email"
               />
-              <Button 
-                className="absolute right-1 top-1 bottom-1 rounded-full bg-brand-color3 px-6 h-[42px]"
-                data-testid="button-footer-submit"
-              >
+              <Button className="absolute right-1.5 top-1.5 bottom-1.5 rounded-full bg-brand-color3 px-6 font-bold hover:bg-brand-color3/90">
                 SUBMIT
               </Button>
             </div>
           </div>
-          <div className="col-span-1">
-            <h4 className="font-bold text-brand-color3 mb-6">Products</h4>
-            <ul className="space-y-3 text-brand-color3/80">
-              <li>Where to Buy</li>
-              <li>Coupons</li>
-              <li>Recipes</li>
-              <li>Conversion Chart</li>
+          
+          <div className="flex flex-col gap-6">
+            <h4 className="font-black text-brand-color3 text-xl uppercase tracking-wider">Products</h4>
+            <ul className="flex flex-col gap-4 text-brand-color3/70 text-lg">
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Where to Buy</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Coupons</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Recipes</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Conversion Chart</li>
             </ul>
           </div>
-          <div className="col-span-1">
-            <h4 className="font-bold text-brand-color3 mb-6">Learn</h4>
-            <ul className="space-y-3 text-brand-color3/80">
-              <li>About</li>
-              <li>Blog</li>
-              <li>FAQ</li>
-              <li>Contact Us</li>
+
+          <div className="flex flex-col gap-6">
+            <h4 className="font-black text-brand-color3 text-xl uppercase tracking-wider">Learn</h4>
+            <ul className="flex flex-col gap-4 text-brand-color3/70 text-lg">
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">About</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Blog</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">FAQ</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Contact Us</li>
             </ul>
           </div>
-          <div className="col-span-1">
-            <h4 className="font-bold text-brand-color3 mb-6">Legal</h4>
-            <ul className="space-y-3 text-brand-color3/80">
-              <li>Privacy Policy</li>
-              <li>Terms & Conditions</li>
-              <li>Cookie Policy</li>
+
+          <div className="flex flex-col gap-6">
+            <h4 className="font-black text-brand-color3 text-xl uppercase tracking-wider">Legal</h4>
+            <ul className="flex flex-col gap-4 text-brand-color3/70 text-lg">
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Privacy Policy</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Terms & Conditions</li>
+              <li className="hover:text-brand-color2 cursor-pointer transition-colors">Cookie Policy</li>
             </ul>
           </div>
-          <div className="col-span-1">
-            <h4 className="font-bold text-brand-color3 mb-6">Follow Us</h4>
-            <div className="flex flex-wrap gap-4">
+
+          <div className="flex flex-col gap-8">
+            <h4 className="font-black text-brand-color3 text-xl uppercase tracking-wider">Follow Us</h4>
+            <div className="flex flex-wrap gap-5">
               {socialIcons.map((icon, index) => (
                 <img
                   key={index}
                   src={icon.src}
-                  className={`${icon.width} ${icon.height} grayscale hover:grayscale-0 transition-all cursor-pointer`}
+                  className={`${icon.width} ${icon.height} grayscale hover:grayscale-0 transition-all cursor-pointer hover:scale-110`}
                   alt=""
-                  data-testid={`img-footer-social-${index}`}
                 />
               ))}
             </div>
+            <div className="mt-4 text-brand-color3/60">
+              <p className="font-bold mb-2">Customer Service</p>
+              <p className="text-sm leading-relaxed">Text or call 1-800-777-5363 or Click Here for Customer Service.</p>
+            </div>
           </div>
         </div>
-        <div className="border-t border-brand-color3/10 pt-8 text-center text-brand-color3/60 text-sm">
-          © Heartland Consumer Products 1996-2026 | Carmel, Indiana USA. All
-          rights reserved.
+        
+        <div className="border-t border-brand-color3/10 pt-12 text-center">
+          <p className="text-brand-color3/50 text-sm font-medium">
+            © Heartland Consumer Products 1996-2026 | Carmel, Indiana USA. All
+            rights reserved.
+          </p>
         </div>
       </footer>
     </div>
