@@ -300,11 +300,15 @@ export const Homepage = () => {
 
 
   {/* ✅ Hero Section */}
-  <section className="w-full min-h-[60vh] sm:min-h-[70vh] lg:min-h-screen relative">
+  <section className="w-screen min-h-[60vh] sm:min-h-[70vh] lg:min-h-screen relative">
 
     {/* Hero Background */}
-    <div
-      className="absolute inset-0 bg-[url('/figmaAssets/heroimg.svg')] bg-cover bg-center bg-no-repeat"
+    <img
+      src="/figmaAssets/heroimg.svg"
+      alt="Hero background"
+      className="absolute inset-0 w-full h-full min-w-full min-h-full max-w-none object-cover object-center"
+      loading="eager"
+      decoding="sync"
     />
 
     {/* Hero Content */}
@@ -497,7 +501,7 @@ export const Homepage = () => {
 
 
         {/* Recipes Section */}
-<section className="relative pt-8 sm:pt-12 lg:pt-16 pb-[20rem] sm:pb-[26rem] lg:pb-[34rem] px-4 sm:px-6 lg:px-[100px] bg-white overflow-visible">
+<section className="relative pt-8 sm:pt-12 lg:pt-16 pb-[20rem] sm:pb-[26rem] max-[1090]:pb-[10rem] lg:pb-[27rem] px-4 sm:px-6 lg:px-[100px] bg-white overflow-visible">
           {/* Yellow Star Decoration - Top Left */}
             <div className="hidden lg:block absolute top-[300px] left-[50px] z-[5]">
                   <img src={yellowstar} alt="" className="w-50 h-50" />
@@ -568,8 +572,8 @@ export const Homepage = () => {
     absolute
     right-[6%]
     bottom-[24%]
-    max-[1300px]:bottom-[12%]
-    max-[1100px]:bottom-[10%]
+    max-[1300px]:bottom-[20%]
+    max-[1100px]:bottom-[16%]
     mr-24
     z-30
   "
@@ -579,8 +583,7 @@ export const Homepage = () => {
     alt="Recommended Badge"
     className="
       w-[100px]
-      max-[1300px]:w-[150px]
-      max-[1100px]:w-[120px]
+      
       h-auto
     "
   />
@@ -588,8 +591,8 @@ export const Homepage = () => {
           
 
           {/* Yellow Wave Transition to Instagram Section */}
-<div className="absolute bottom-[-60px] left-0 w-full z-0">
-  <div className="px-4 sm:px-10 lg:px-[80px] mb-6 sm:mb-8 lg:mb-10 relative">
+<div className="absolute bottom-[-60px]  left-0 w-full z-0">
+  <div className="px-4 sm:px-10 lg:px-[80px] max-[1090px]:py-0 mb-6 sm:mb-8 lg:mb-10 relative">
             <div className="flex items-start gap-3">
                <span className="flex flex-col items-start"><img src={check} alt="check" className="h-8 sm:h-12 lg:h-auto w-auto" /><img src={inst} alt="inst" className="h-6 sm:h-10 lg:h-auto w-auto mt-1" /></span> 
               {/* Sparkle Stars */}
@@ -605,14 +608,25 @@ export const Homepage = () => {
   <img
     src={wavebrand}
     alt="wavebrand"
-    className="mt-[-10%] z-[0] ml-[-12%] max-w-none h-full w-[120%] object-cover block"
+    className="mt-[-10%] max-[1290px]:mt-[-4%] max-[1100px]:mt-[-1%] z-[0] ml-[-12%] max-w-none h-full w-[120%] object-cover block"
   />
 </div>
 
         </section>
 
         {/* Instagram Section */}
-        <section   className="relative overflow-hidden bg-[#F4D548] -mt-[100px] pb-0 z-[1]"
+ <section
+  className="
+    relative
+    overflow-hidden
+    bg-[#F4D548]
+    -mt-[60px]          /* smoother overlap */
+    max-[1250px]:mt-[10px]
+    max-[1024px]:mt-[10px]
+    pt-0
+    pb-0
+    z-[1]
+  "
   data-testid="section-instagram"
 >
           {/* Header with Stars */}
@@ -620,7 +634,7 @@ export const Homepage = () => {
 
           {/* Instagram Carousel - Auto-scrolling, pauses on hover */}
           <div 
-            className="instagram-carousel-container group relative overflow-hidden pb-5"
+            className="instagram-carousel-container group relative overflow-hidden pb-5" 
           >
             <div 
               className="instagram-carousel flex gap-3 pl-4 pr-4 animate-[scrollLeft_25s_linear_infinite]"
@@ -805,8 +819,8 @@ export const Homepage = () => {
     {/* Splenda + ECR */}
     <div className="flex flex-col items-center lg:items-start gap-2 lg:gap-3 mb-2 mt-[-3px]">
       <span className="text-white text-[40px]">
-        <img src={splenda} alt="splenda" className="h-8 sm:h-10 lg:h-auto w-auto"/>
-        <img src={merch} alt="merch" className="h-12 sm:h-16 lg:h-auto w-auto mt-2"/>
+        <img src={splenda} alt="splenda" className="h-8 sm:h-10 lg:h-auto w-[450px] max-[1090px]:h-7 max-[1090px]:w-[290px]"/>
+        <img src={merch} alt="merch" className="h-12 sm:h-16 lg:h-auto w-auto mt-2 max-[1090px]:h-10 max-[1090px]:w-[120px]"/>
       </span>
     </div>
   </div>
