@@ -226,12 +226,12 @@ export const Homepage = () => {
 
           {/* Desktop Layout */}
           <div className="hidden w-full items-center justify-between lg:flex">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-[10rem] max-[1100px]:gap-[0rem] ">
               <div className="flex items-baseline gap-1">
                 <img
                   src={logoimg}
                   alt="logoimg"
-                  className="h-6 w-[160px] lg:w-[130px] min-[1100px]:w-[115px] xl:w-[160px] object-contain"
+                  className="h-6 w-[160px] lg:w-[230px] min-[1100px]:w-[115px] xl:w-[230px] object-contain"
                 />
               </div>
 
@@ -444,7 +444,7 @@ export const Homepage = () => {
           className="
     relative
     px-4 sm:px-6 lg:px-[100px]
-    pt-[4rem] sm:pt-[6rem] lg:pt-[8rem]
+     sm:pt-[6rem] lg:pt-[0rem]
     flex
     flex-row-reverse     /* ✅ Reverse only on phone */
     lg:flex-row          /* ✅ Desktop unchanged */
@@ -714,9 +714,10 @@ export const Homepage = () => {
     pointer-events-none
     z-20
       
-    top-[94%]        /* 📱 Mobile default */
-    sm:top-[91%]     /* 📲 Tablet */
-    lg:top-[85%]     /* 💻 Desktop */
+    top-[95%]        
+    sm:top-[91%]   
+    lg:top-[85%]     
+    // max-[380px]:top-[95%]  
   "
           >
             <img
@@ -740,7 +741,7 @@ export const Homepage = () => {
         {/* Recipes Section */}
         <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-[20rem] sm:pb-[26rem] max-[1090]:pb-[10rem] lg:pb-[27rem] px-4 sm:px-6 lg:px-[100px] bg-white overflow-visible">
           {/* Yellow Star Decoration - Top Left */}
-          <div className="hidden lg:block absolute top-[300px] left-[50px] z-[5]">
+          <div className="hidden lg:block absolute top-[234px] left-[50px] z-[5]">
             <img src={yellowstar} alt="" className="w-50 h-50" />
           </div>
 
@@ -749,9 +750,9 @@ export const Homepage = () => {
               <img src={explore} alt="img" className="h-8 sm:h-10 lg:h-auto w-auto" />
               <img src={recipes} alt="recipes.png" className="h-8 sm:h-10 lg:h-auto w-auto" />
             </div>
-            <h2 className="text-brand-color3 font-bold text-5xl lg:text-4xl min-[1100px]:text-3xl xl:text-5xl leading-tight mb-4 sm:mb-6">
+            {/* <h2 className="text-brand-color3 font-bold text-5xl lg:text-4xl min-[1100px]:text-3xl xl:text-5xl leading-tight mb-4 sm:mb-6">
               Explore Recipes
-            </h2>
+            </h2> */}
             <div className="hidden sm:block relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[398px] h-[50px] lg:h-[60px] mx-auto">
 
               {/* Border + Background */}
@@ -882,7 +883,7 @@ export const Homepage = () => {
 
           {/* #1 Recommended Badge - Bottom Right */}
 
-          <div className="hidden lg:block absolute right-[6%] bottom-[24%] max-[1300px]:bottom-[20%] max-[1100px]:bottom-[16%] mr-24 z-30">
+          <div className="hidden lg:block absolute right-[6%] bottom-[27%] max-[1300px]:bottom-[20%] max-[1100px]:bottom-[16%] mr-24 z-30">
             <img
               src={brand}
               alt="Recommended Badge"
@@ -1211,8 +1212,8 @@ export const Homepage = () => {
 
           </div>
           {/* 🔹 Products Row */}
-          {/* 🔹 Products Row — MOBILE ONLY */}
-          <div className="sm:hidden px-6 pt-10 pb-8 flex flex-col gap-16 relative z-20">
+
+          <div className="sm:hidden px-2 pt-10 pb-8 flex flex-col sm:px-1 gap-16 relative z-20">
 
             {merchProducts.map((product, index) => {
               const isOdd = index % 2 !== 0;
@@ -1220,8 +1221,7 @@ export const Homepage = () => {
               return (
                 <div
                   key={`mobile-merch-${index}`}
-                  className={`flex items-center gap-6 ${isOdd ? "flex-row-reverse" : "flex-row"
-                    }`}
+                  className={`flex items-center ${isOdd ? "flex-row-reverse" : "flex-row"}`}
                 >
 
                   {/* Oval Image */}
@@ -1304,7 +1304,7 @@ export const Homepage = () => {
 
           </div>
 
-          <div className="hidden sm:grid px-4 sm:px-6 lg:px-[100px] pt-6 sm:pt-8 lg:pt-[40px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
+          <div className="hidden sm:gap-[0.5rem] sm:grid px-4 sm:px-6 lg:px-[100px] pt-6 sm:pt-8 lg:pt-[40px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
             {merchProducts.map((product, index) => (
               <div
                 key={index}
