@@ -12,29 +12,30 @@ This repository now contains a **frontend-only** React experience powered by Vit
 ## System Architecture
 
 ### Directory Structure
-- **`client/`** — Vite-powered React SPA (all application code lives here).
+- **`src/`** — Vite-powered React SPA source (components, hooks, lib, pages).
+- **`public/`** — Static assets served as-is (Figma exports, SVGs, manifest, etc.).
 - **`components.json`** — shadcn/ui configuration for generating new component boilerplate.
 - **`attached_assets/`** — Optional design exports or static art referenced from the UI.
 
 ### Frontend Stack
 - **Framework**: React 18 with TypeScript.
-- **Bundler/Dev Server**: Vite (configured in `vite.config.ts`, root set to `client/`).
+- **Bundler/Dev Server**: Vite (configured in `vite.config.ts`, root is the repo root).
 - **Routing**: Wouter for lightweight client-side routing needs.
 - **Data/State**: TanStack React Query handles async state (still useful even without a backend when integrating with external APIs later).
 - **Forms & Validation**: React Hook Form + Zod resolvers.
-- **Styling**: Tailwind CSS with project-specific tokens defined in `client/src/index.css`.
-- **UI Kit**: shadcn/ui components (Radix UI primitives) stored under `client/src/components/ui/`.
+- **Styling**: Tailwind CSS with project-specific tokens defined in `src/index.css`.
+- **UI Kit**: shadcn/ui components (Radix UI primitives) stored under `src/components/ui/`.
 - **Icons & Motion**: Lucide icons, Framer Motion, Embla Carousel, React Day Picker, etc.
-- **Path Aliases**: `@/` → `client/src/`, `@assets/` → `attached_assets/`.
+- **Path Aliases**: `@/` → `src/`, `@assets/` → `attached_assets/`.
 
 ### Build & Scripts
 - `npm run dev` — Start the Vite dev server for the React app.
-- `npm run build` — Generate the production-ready static bundle under `dist/public/`.
+- `npm run build` — Generate the production-ready static bundle under `dist/`.
 - `npm run preview` / `npm run start` — Preview the built site locally (uses `vite preview`).
 - `npm run check` — Type-check the frontend using `tsc`.
 
 ### Deployment Notes
-- Because there is no backend, deployment is as simple as running `npm run build` and serving the `dist/public/` output via any static host.
+- Because there is no backend, deployment is as simple as running `npm run build` and serving the `dist/` output via any static host.
 - Environment variables are not required unless you connect to external APIs from the browser.
 - React Query remains in place so you can easily wire in public APIs without retooling state management.
 
@@ -47,7 +48,7 @@ This repository now contains a **frontend-only** React experience powered by Vit
 
 ## Fonts & Assets
 - Google Fonts (Architects Daughter, DM Sans, Fira Code, Geist Mono, Plus Jakarta Sans) are loaded via CSS.
-- SVG/PNG assets exported from Figma reside under `client/public/figmaAssets/` and optional `attached_assets/`.
+- SVG/PNG assets exported from Figma reside under `public/figmaAssets/` and optional `attached_assets/`.
 
 ## Replit Tooling
 - `@replit/vite-plugin-runtime-error-modal` surfaces runtime errors with an overlay.
