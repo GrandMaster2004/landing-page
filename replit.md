@@ -2,67 +2,53 @@
 
 ## Overview
 
-This is a full-stack web application built with a React frontend and Express backend. It appears to be a product/brand website (likely for a food/beverage company) featuring product categories, recipes, and a "where to buy" section. The homepage is based on a Figma design with product imagery, category tabs (Hot Bev, Cold Bev, Baking, Cooking, etc.), and navigation. The project uses a monorepo structure with shared code between client and server.
+This repository now contains a **frontend-only** React experience powered by Vite and Tailwind CSS. The previous Express/Drizzle backend has been removed so the site can be deployed as a static asset bundle (e.g., Vercel, Netlify, GitHub Pages). The UI mirrors a marketing homepage with product carousels, recipe cards, and Instagram-inspired content blocks.
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+- Communicate in simple, everyday language.
+- Prioritize instructions that keep the project deployable as a static site.
 
 ## System Architecture
 
 ### Directory Structure
-- **`client/`** — React frontend (Vite-powered SPA)
-- **`server/`** — Express backend API server
-- **`shared/`** — Shared code (database schema, types) used by both client and server
-- **`migrations/`** — Drizzle ORM database migrations
-- **`attached_assets/`** — Static assets (Figma exports, images)
+- **`client/`** — Vite-powered React SPA (all application code lives here).
+- **`components.json`** — shadcn/ui configuration for generating new component boilerplate.
+- **`attached_assets/`** — Optional design exports or static art referenced from the UI.
 
-### Frontend Architecture
-- **Framework**: React with TypeScript (no RSC/SSR — client-side only)
-- **Bundler**: Vite with HMR in development
-- **Routing**: Wouter (lightweight client-side router)
-- **State/Data Fetching**: TanStack React Query for server state management
-- **Styling**: Tailwind CSS with CSS variables for theming (custom brand colors defined in `index.css`)
-- **UI Components**: shadcn/ui (new-york style) built on Radix UI primitives. Components live in `client/src/components/ui/`. The component configuration is in `components.json` — use this when adding new shadcn components.
-- **Forms**: React Hook Form with Zod resolvers (via `@hookform/resolvers`)
-- **Path aliases**: `@/` maps to `client/src/`, `@shared/` maps to `shared/`, `@assets/` maps to `attached_assets/`
+### Frontend Stack
+- **Framework**: React 18 with TypeScript.
+- **Bundler/Dev Server**: Vite (configured in `vite.config.ts`, root set to `client/`).
+- **Routing**: Wouter for lightweight client-side routing needs.
+- **Data/State**: TanStack React Query handles async state (still useful even without a backend when integrating with external APIs later).
+- **Forms & Validation**: React Hook Form + Zod resolvers.
+- **Styling**: Tailwind CSS with project-specific tokens defined in `client/src/index.css`.
+- **UI Kit**: shadcn/ui components (Radix UI primitives) stored under `client/src/components/ui/`.
+- **Icons & Motion**: Lucide icons, Framer Motion, Embla Carousel, React Day Picker, etc.
+- **Path Aliases**: `@/` → `client/src/`, `@assets/` → `attached_assets/`.
 
-### Backend Architecture
-- **Framework**: Express.js running on Node with TypeScript (via `tsx` in dev, `esbuild` bundle for production)
-- **API Convention**: All API routes should be prefixed with `/api`
-- **Storage Layer**: Abstracted behind an `IStorage` interface in `server/storage.ts`. Currently uses `MemStorage` (in-memory Map-based storage). This can be swapped to a database-backed implementation.
-- **Server Setup**: In development, Vite middleware is integrated into Express for HMR. In production, the Express server serves the static build from `dist/public/`.
-- **Build Process**: `vite build` for frontend → `dist/public/`, `esbuild` for server → `dist/index.js`
+### Build & Scripts
+- `npm run dev` — Start the Vite dev server for the React app.
+- `npm run build` — Generate the production-ready static bundle under `dist/public/`.
+- `npm run preview` / `npm run start` — Preview the built site locally (uses `vite preview`).
+- `npm run check` — Type-check the frontend using `tsc`.
 
-### Database
-- **ORM**: Drizzle ORM with PostgreSQL dialect
-- **Connection**: Uses `@neondatabase/serverless` (Neon Postgres) via `DATABASE_URL` environment variable
-- **Schema**: Defined in `shared/schema.ts` using Drizzle's `pgTable` helpers. Currently has a `users` table with `id` (UUID), `username`, and `password` columns.
-- **Validation**: Zod schemas generated from Drizzle schemas via `drizzle-zod`
-- **Migrations**: Run `npm run db:push` to push schema changes to the database (uses `drizzle-kit push`)
-- **Note**: The storage layer currently defaults to in-memory. When connecting to Postgres, create a `DatabaseStorage` class implementing `IStorage` and use `drizzle-orm` with the Neon client.
+### Deployment Notes
+- Because there is no backend, deployment is as simple as running `npm run build` and serving the `dist/public/` output via any static host.
+- Environment variables are not required unless you connect to external APIs from the browser.
+- React Query remains in place so you can easily wire in public APIs without retooling state management.
 
-### Session Management
-- **`connect-pg-simple`** is listed as a dependency, indicating PostgreSQL-backed session storage is intended (likely with `express-session`, though not yet wired up).
+## Key NPM Packages
+- **Core**: React, React DOM, Vite, Wouter.
+- **UI/UX**: Tailwind CSS, tailwind-merge, tailwindcss-animate, Lucide React, Framer Motion, Embla Carousel, Vaul, cmdk.
+- **Forms & Validation**: React Hook Form, @hookform/resolvers, Zod, zod-validation-error.
+- **Data**: @tanstack/react-query.
+- **Utilities**: class-variance-authority, clsx, date-fns, recharts, react-day-picker, react-resizable-panels, next-themes, input-otp.
 
-### Key Design Patterns
-- **Shared types**: Database types (`User`, `InsertUser`) and Zod schemas are defined once in `shared/schema.ts` and consumed by both frontend and backend
-- **Storage interface**: The `IStorage` interface decouples business logic from data persistence, making it easy to swap between in-memory and database backends
-- **API client**: `client/src/lib/queryClient.ts` provides `apiRequest()` for mutations and `getQueryFn()` for queries, both handling credentials and error states consistently
+## Fonts & Assets
+- Google Fonts (Architects Daughter, DM Sans, Fira Code, Geist Mono, Plus Jakarta Sans) are loaded via CSS.
+- SVG/PNG assets exported from Figma reside under `client/public/figmaAssets/` and optional `attached_assets/`.
 
-## External Dependencies
-
-### Database
-- **PostgreSQL** via **Neon** (`@neondatabase/serverless`) — requires `DATABASE_URL` environment variable
-
-### Key NPM Packages
-- **Frontend**: React, Vite, Wouter, TanStack React Query, Tailwind CSS, Radix UI, shadcn/ui components, Embla Carousel, Recharts, React Day Picker, React Hook Form, Zod, Vaul (drawer), cmdk (command palette)
-- **Backend**: Express, Drizzle ORM, Drizzle Kit, connect-pg-simple, nanoid
-- **Shared**: drizzle-zod, zod
-
-### Fonts (External CDN)
-- Google Fonts: Architects Daughter, DM Sans, Fira Code, Geist Mono, Plus Jakarta Sans
-
-### Replit-specific Plugins
-- `@replit/vite-plugin-runtime-error-modal` — always active
-- `@replit/vite-plugin-cartographer` and `@replit/vite-plugin-dev-banner` — active only in development on Replit
+## Replit Tooling
+- `@replit/vite-plugin-runtime-error-modal` surfaces runtime errors with an overlay.
+- `@replit/vite-plugin-cartographer` + `@replit/vite-plugin-dev-banner` enable Replit-specific DX improvements during development (automatically disabled in production builds).
