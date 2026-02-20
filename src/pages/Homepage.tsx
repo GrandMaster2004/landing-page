@@ -32,6 +32,8 @@ const navigationItems = [
   { label: "Recipes", hasDropdown: false },
 ];
 
+type NavigationItem = (typeof navigationItems)[number];
+
 const categoryTabs = [
   { label: "HOT BEV", active: true },
   { label: "COLD BEV", active: false },
@@ -153,6 +155,41 @@ export const Homepage = () => {
   const [productMenuOpen, setProductMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<{ label: string; items: string[] } | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(null);
+  const [mobileProductCategoryOpen, setMobileProductCategoryOpen] = useState<string | null>(null);
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen((prev) => {
+      if (prev) {
+        setMobileSubmenuOpen(null);
+        setMobileProductCategoryOpen(null);
+      }
+      return !prev;
+    });
+  };
+
+  const handleMobileNavClick = (item: NavigationItem) => {
+    if (!item.hasDropdown) {
+      setMobileMenuOpen(false);
+      setMobileSubmenuOpen(null);
+      setMobileProductCategoryOpen(null);
+      return;
+    }
+    setMobileSubmenuOpen((prev) => {
+      const next = prev === item.label ? null : item.label;
+      if (next !== "Products") {
+        setMobileProductCategoryOpen(null);
+      }
+      if (next === null) {
+        setMobileProductCategoryOpen(null);
+      }
+      return next;
+    });
+  };
+
+  const handleMobileProductCategoryToggle = (label: string) => {
+    setMobileProductCategoryOpen((prev) => (prev === label ? null : label));
+  };
 
   return (
     <div className="bg-white relative w-full overflow-x-hidden" data-testid="page-homepage">
@@ -172,7 +209,7 @@ export const Homepage = () => {
         </p>
         <button
           className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-brand-color3 text-white shadow-[2px_2px_0px_#0C3C60]"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          onClick={handleMobileMenuToggle}
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -303,16 +340,59 @@ export const Homepage = () => {
         </div>
         {/* Mobile Navigation Links */}
         <nav className="flex flex-col p-4 gap-4">
-          {navigationItems.map((item) => (
-            <button
-              key={item.label}
-              className="text-[#0C3C60] text-base font-medium hover:text-brand-color2 flex items-center justify-between py-2 border-b border-gray-100"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {item.label}
-              {item.hasDropdown && <ChevronDownIcon className="w-4 h-4" />}
-            </button>
-          ))}
+          {navigationItems.map((item) => {
+            const isOpen = mobileSubmenuOpen === item.label;
+            return (
+              <div key={item.label} className="flex flex-col gap-3">
+                <button
+                  type="button"
+                  className="text-[#0C3C60] text-base font-semibold flex items-center justify-between py-2 border-b border-gray-100"
+                  onClick={() => handleMobileNavClick(item)}
+                  aria-expanded={isOpen}
+                >
+                  <span>{item.label}</span>
+                  {item.hasDropdown && (
+                    <ChevronDownIcon
+                      className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+                    />
+                  )}
+                </button>
+
+                {item.label === "Products" && isOpen && (
+                  <div className="ml-1 rounded-[18px] bg-[#E8F4FF] px-4 py-3 flex flex-col gap-4 shadow-inner">
+                    {productMenu.map((category, index) => {
+                      const isCategoryOpen = mobileProductCategoryOpen === category.label;
+                      return (
+                        <div key={category.label} className="flex flex-col gap-2">
+                          <button
+                            type="button"
+                            className={`flex items-center justify-between text-sm font-semibold text-[#0C3C60] ${isCategoryOpen ? "text-[#0A2A66]" : ""}`}
+                            onClick={() => handleMobileProductCategoryToggle(category.label)}
+                            aria-expanded={isCategoryOpen}
+                          >
+                            <span>{category.label}</span>
+                            <ChevronDownIcon
+                              className={`w-3 h-3 text-[#0C3C60] transition-transform ${isCategoryOpen ? "rotate-180" : ""}`}
+                            />
+                          </button>
+                          {isCategoryOpen && (
+                            <div className="pl-1 flex flex-col gap-1 text-[13px] font-medium text-[#0C3C60]">
+                              {category.items.map((sub) => (
+                                <span key={sub}>{sub}</span>
+                              ))}
+                            </div>
+                          )}
+                          {index !== productMenu.length - 1 && (
+                            <div className="h-px bg-[#0C3C60]/30" />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
       </div>
     )}
@@ -332,10 +412,10 @@ export const Homepage = () => {
     />
 
     {/* Hero Content */}
-    <div className="relative z-10 min-h-[calc(60vh-60px)] sm:min-h-[calc(70vh-60px)] lg:min-h-[calc(100vh-70px)] flex items-end justify-center lg:justify-start px-4 sm:px-6 lg:px-[100px] pb-[10vh] sm:pb-[15vh] lg:pb-[20vh]">
-      <Button className="w-full sm:w-[200px] lg:w-[280px] h-[50px] lg:h-[60px] bg-brand-color2 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-base sm:text-lg lg:text-xl font-bold hover:bg-brand-color2/90 transition-all">
-        VIEW SWEETENERS
-      </Button>
+    <div className="relative z-10 min-h-[calc(60vh-60px)] sm:min-h-[calc(70vh-60px)] lg:min-h-[calc(100vh-70px)] flex items-end justify-start lg:justify-start sm:justify-left px-4 sm:px-6 lg:px-[100px] pb-[4vh] sm:pb-[15vh] lg:pb-[20vh]">
+      <Button className="w-auto px-6 sm:px-8 lg:px-10 h-[50px] lg:h-[60px] bg-brand-color2 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-base sm:text-lg lg:text-xl font-bold hover:bg-brand-color2/90 transition-all">
+  VIEW SWEETENERS
+</Button>
     </div>
 
 </section>
@@ -351,65 +431,66 @@ export const Homepage = () => {
       </div>
       {/* Main Content Container - Flowing smoothly */}
       <div className="relative w-full ">
+        
         {/* Quiz Section - Fixed Spacing */}
 
-        <section
-  className="relative px-4 sm:px-6 lg:px-[100px] pt-[4rem] sm:pt-[6rem] lg:pt-[8rem] flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-24 bg-white"
-  data-testid="section-quiz"
+    <section
+className="relative px-4 sm:px-6 lg:px-[100px] pt-[4rem] sm:pt-[6rem] lg:pt-[8rem] flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-24 bg-white"
+data-testid="section-quiz"
 >
-  {/* IMAGE SIDE */}
-  <div className="
-      relative
-      w-full
-      max-w-[624px]
-      max-[1185px]:max-w-[420px]
-      max-[1024px]:max-w-[320px]
-      
-  ">
-    
-    {/* Decorative Star */}
-    <img
-      className="absolute -bottom-30 -right-23 mb-[90px] w-[80px] h-[90px] sm:w-[100px] sm:h-[114px] lg:w-[130px] lg:h-[144px] rotate-[15deg] z-10 hidden sm:block"
-      src="/figmaAssets/cyan-2--1--1.png"
-      alt=""
-    />
+{/* IMAGE SIDE */}
+<div className="
+  relative
+  w-full
+  max-w-[624px]
+  max-[1185px]:max-w-[420px]
+  max-[1024px]:max-w-[320px]
+  
+">
 
-    {/* MAIN IMAGE */}
-    <img
-      className="w-full h-auto rounded-[20px] sm:rounded-[25px] lg:rounded-[30px]"
-      src="/figmaAssets/updated-product-quiz-image-1.png"
-      alt=""
-      data-testid="img-quiz-main"
-    />
+{/* Decorative Star */}
+<img
+  className="absolute -bottom-30 -right-23 mb-[90px] w-[80px] h-[90px] sm:w-[100px] sm:h-[114px] lg:w-[130px] lg:h-[144px] rotate-[15deg] z-10 hidden sm:block"
+  src="/figmaAssets/cyan-2--1--1.png"
+  alt=""
+/>
 
-    <img
-      className="absolute -bottom-12 -right-12 w-[100px] h-[103px] sm:w-[140px] sm:h-[144px] lg:w-[189px] lg:h-[194px] rotate-[-18deg] hidden sm:block"
-      src="/figmaAssets/cyan-2--1--1.png"
-      alt=""
-    />
-  </div>
+{/* MAIN IMAGE */}
+<img
+  className="w-full h-auto rounded-[20px] sm:rounded-[25px] lg:rounded-[30px]"
+  src="/figmaAssets/updated-product-quiz-image-1.png"
+  alt=""
+  data-testid="img-quiz-main"
+/>
 
-  {/* TEXT SIDE */}
-  <div className="max-w-[500px] text-center lg:text-left">
-    <h2 className="mb-4 sm:mb-6 flex justify-center lg:justify-start">
-      <img
-        src={find_your}
-        alt="find_your"
-        className="w-[200px] sm:w-[280px] lg:w-auto h-auto"
-      />
-    </h2>
+<img
+  className="absolute -bottom-12 -right-12 w-[100px] h-[103px] sm:w-[140px] sm:h-[144px] lg:w-[189px] lg:h-[194px] rotate-[-18deg] hidden sm:block"
+  src="/figmaAssets/cyan-2--1--1.png"
+  alt=""
+/>
+</div>
 
-    <p className="text-brand-color3 text-base sm:text-lg lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
-      Take a short quiz to find out which Splenda products are right for you.
-    </p>
+{/* TEXT SIDE */}
+<div className="max-w-[500px] text-center lg:text-left">
+<h2 className="mb-4 sm:mb-6 flex justify-center lg:justify-start">
+  <img
+    src={find_your}
+    alt="find_your"
+    className="w-[200px] sm:w-[280px] lg:w-auto h-auto"
+  />
+</h2>
 
-    <Button
-      className="w-full sm:w-[162px] h-[50px] lg:h-[60px] bg-brand-color3 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-base lg:text-lg font-bold"
-    >
-      TAKE QUIZ
-    </Button>
-  </div>
-</section>
+<p className="text-brand-color3 text-base sm:text-lg lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
+  Take a short quiz to find out which Splenda products are right for you.
+</p>
+
+<Button
+  className="w-full sm:w-[162px] h-[50px] lg:h-[60px] bg-brand-color3 rounded-full border border-black shadow-[2px_2px_0px_#000] text-white text-base lg:text-lg font-bold"
+>
+  TAKE QUIZ
+</Button>
+</div>
+    </section>
 
         {/* Categories Section */}
   <section className="relative overflow-hidden">
@@ -575,7 +656,7 @@ export const Homepage = () => {
             <h2 className="text-brand-color3 font-bold text-5xl lg:text-4xl min-[1100px]:text-3xl xl:text-5xl leading-tight mb-4 sm:mb-6">
               Explore Recipes
             </h2>
-            <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[398px] h-[50px] lg:h-[60px] mx-auto">
+            <div className="hidden sm:block relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[398px] h-[50px] lg:h-[60px] mx-auto">
 
   {/* Border + Background */}
   <div className="absolute inset-0 rounded-full border-2 border-[#1E3E7C] bg-white shadow-[4px_4px_0px_#1E3E7C]" />
@@ -598,7 +679,46 @@ export const Homepage = () => {
 
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 lg:gap-10 mb-10 lg:mb-16">
+          {/* Mobile Search + Carousel */}
+          <div className="sm:hidden flex flex-col gap-8">
+            <div className="relative w-full h-[50px] mx-auto max-w-[340px]">
+              <div className="absolute inset-0 rounded-full border-2 border-[#1E3E7C] bg-white shadow-[4px_4px_0px_#1E3E7C]" />
+              <Input
+                className="absolute inset-0 w-full h-full bg-transparent pl-5 pr-12 border-0 focus-visible:ring-0 text-[#1E3E7C] placeholder:text-[#1E3E7C]/60 rounded-full"
+                placeholder="Looking for something sweet..."
+              />
+              <SearchIcon className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1E3E7C]" />
+            </div>
+
+            <div className="relative -mx-4">
+              <div className="overflow-hidden px-4">
+                <div className="flex gap-4 recipe-mobile-marquee animate-[recipeMarquee_22s_linear_infinite]">
+                  {[...recipeCards, ...recipeCards].map((recipe, index) => (
+                    <div
+                      key={`mobile-recipe-${index}`}
+                      className="shrink-0 w-[78vw] max-w-[300px] rounded-[24px] border border-[#0C3C60] bg-white shadow-[0_8px_0px_rgba(12,60,96,0.2)] overflow-hidden"
+                    >
+                      <div className="relative">
+                        <img src={recipe.image} alt={recipe.title} className="w-full h-[240px] object-cover" />
+                        <div className="absolute top-3 left-3">
+                          <Badge className="bg-[#00AEEF] text-white border-none text-[10px] font-bold px-4 py-1 rounded-full">
+                            {recipe.badge}
+                          </Badge>
+                        </div>
+                      </div>
+                      <div className="px-4 py-4">
+                        <p className="text-[#0C3C60] text-lg font-bold leading-tight">
+                          {recipe.title}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 lg:gap-10 mb-10 lg:mb-16">
             {recipeCards.map((recipe, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div className="relative mb-4 sm:mb-6 lg:mb-8 w-full">
@@ -624,20 +744,19 @@ export const Homepage = () => {
             </Button>
           </div>
 
+          <style>{`
+            @keyframes recipeMarquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            @media (min-width: 640px) {
+              .recipe-mobile-marquee { animation: none !important; }
+            }
+          `}</style>
+
           {/* #1 Recommended Badge - Bottom Right */}
-{/* #1 Recommended Badge - Responsive */}
-{/* #1 Recommended Badge - FIXED RESPONSIVE */}
-<div
-  className="
-    absolute
-    right-[6%]
-    bottom-[24%]
-    max-[1300px]:bottom-[20%]
-    max-[1100px]:bottom-[16%]
-    mr-24
-    z-30
-  "
->
+
+<div class="hidden lg:block absolute right-[6%] bottom-[24%] max-[1300px]:bottom-[20%] max-[1100px]:bottom-[16%] mr-24 z-30">
   <img
     src={brand}
     alt="Recommended Badge"
@@ -651,7 +770,7 @@ export const Homepage = () => {
           
 
           {/* Yellow Wave Transition to Instagram Section */}
-<div className="absolute bottom-[-60px]  left-0 w-full z-0">
+<div className="absolute bottom-[-60px] left-0 w-full z-0 group">
   <div className="px-4 sm:px-10 lg:px-[80px] max-[1090px]:py-0 mb-6 sm:mb-8 lg:mb-10 relative">
             <div className="flex items-start gap-3">
                <span className="flex flex-col items-start"><img src={check} alt="check" className="h-8 sm:h-12 lg:h-auto w-auto" /><img src={inst} alt="inst" className="h-6 sm:h-10 lg:h-auto w-auto mt-1" /></span> 
@@ -668,7 +787,7 @@ export const Homepage = () => {
   <img
     src={wavebrand}
     alt="wavebrand"
-    className="mt-[-10%] max-[1290px]:mt-[-4%] max-[1100px]:mt-[-1%] z-[0] ml-[-12%] max-w-none h-full w-[120%] object-cover block"
+    className="mt-[-10%] max-[1290px]:mt-[-4%] max-[1100px]:mt-[-1%] z-[0] ml-[-12%] max-w-none h-full w-[120%] object-cover block transition-transform duration-500 ease-out group-hover:scale-[1.08] group-active:scale-[1.05]"
   />
 </div>
 
@@ -882,7 +1001,37 @@ export const Homepage = () => {
   </div>
 
   {/* 🔹 Products Row */}
-  <div className="px-4 sm:px-6 lg:px-[100px] pt-6 sm:pt-8 lg:pt-[40px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
+  <div className="sm:hidden px-5 pt-8 flex flex-col gap-10 relative z-20">
+    {merchProducts.map((product, index) => (
+      <div
+        key={`mobile-merch-${index}`}
+        className="flex items-center gap-4"
+      >
+        <div className="relative shrink-0">
+          <div className="w-[150px] h-[118px] rounded-[999px] bg-white shadow-[0_16px_40px_rgba(0,0,0,0.18)] border border-[#E5EEF5] rotate-[-4deg] flex items-center justify-center">
+            <img
+              src={product.image}
+              alt={product.title}
+              className="max-w-[120px] max-h-[90px] object-contain rotate-[4deg]"
+            />
+          </div>
+        </div>
+        <div className="flex-1">
+          <p className="text-white text-sm font-semibold leading-snug">
+            {product.title}
+          </p>
+          <p className="text-[#F4D548] text-base font-bold mt-2">
+            {product.price}
+          </p>
+          <button className="mt-3 inline-flex items-center justify-center bg-[#F4D548] text-[#0C3C60] font-bold text-xs px-6 py-2 rounded-full border-2 border-[#0C3C60] shadow-[2px_2px_0_#0C3C60]">
+            VIEW PRODUCT
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div className="hidden sm:grid px-4 sm:px-6 lg:px-[100px] pt-6 sm:pt-8 lg:pt-[40px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
     {merchProducts.map((product, index) => (
       <div
         key={index}
