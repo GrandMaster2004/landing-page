@@ -306,7 +306,7 @@ export const Homepage = () => {
     <img
       src="/figmaAssets/heroimg.svg"
       alt="Hero background"
-      className="absolute inset-0 w-full h-full min-w-full min-h-full max-w-none object-cover object-center"
+      className="absolute left-0 right-0 top-0 bottom-0 w-full h-full min-w-full min-h-full max-w-none object-cover object-center "
       loading="eager"
       decoding="sync"
     />
@@ -768,11 +768,7 @@ export const Homepage = () => {
           </div>
 
           {/* Yellow to Blue Wave Transition */}
-          {/* <div className="absolute bottom-0 left-0 right-0 h-[80px] overflow-hidden">
-            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="absolute bottom-0 w-full h-full">
-              <path d="M0,80 L0,40 C240,80 480,0 720,10 C960,20 1200,60 1440,30 L1440,80 Z" fill="#1EA4C9"/>
-            </svg>
-          </div> */}
+       
 
           {/* CSS for carousel animation */}
           <style>{`
@@ -796,7 +792,7 @@ export const Homepage = () => {
 
         {/* Merch Section */}
         <div
-                  className="hidden lg:block pointer-events-none absolute w-[140%] leading-[0] z-10 ml-[-14%] mt-[-20%]"
+                  className=" lg:block pointer-events-none absolute w-[140%] leading-[0] z-10 ml-[-14%] mt-[-20%]"
 >
   <img
     src={waveblue}
