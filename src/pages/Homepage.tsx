@@ -304,8 +304,7 @@ export const Homepage = () => {
 
     {/* Hero Background */}
     <div
-      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/figmaAssets/heroimg.svg')" }}
+      className="absolute inset-0 bg-[url('/figmaAssets/heroimg.svg')] bg-cover bg-center bg-no-repeat"
     />
 
     {/* Hero Content */}
@@ -500,7 +499,7 @@ export const Homepage = () => {
         {/* Recipes Section */}
 <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-[20rem] sm:pb-[26rem] lg:pb-[34rem] px-4 sm:px-6 lg:px-[100px] bg-white overflow-visible">
           {/* Yellow Star Decoration - Top Left */}
-          <div className="hidden lg:block" style={{ position: 'absolute', top: '300px', left: '50px', zIndex: 5 }}>
+            <div className="hidden lg:block absolute top-[300px] left-[50px] z-[5]">
                   <img src={yellowstar} alt="" className="w-50 h-50" />
           </div>
 
@@ -591,12 +590,12 @@ export const Homepage = () => {
           {/* Yellow Wave Transition to Instagram Section */}
 <div className="absolute bottom-[-60px] left-0 w-full z-0">
   <div className="px-4 sm:px-10 lg:px-[80px] mb-6 sm:mb-8 lg:mb-10 relative">
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+            <div className="flex items-start gap-3">
                <span className="flex flex-col items-start"><img src={check} alt="check" className="h-8 sm:h-12 lg:h-auto w-auto" /><img src={inst} alt="inst" className="h-6 sm:h-10 lg:h-auto w-auto mt-1" /></span> 
               {/* Sparkle Stars */}
-              <div className="hidden lg:flex" style={{ alignItems: 'flex-end', gap: '3px', marginTop: '8px' }}>
+              <div className="hidden lg:flex items-end gap-[3px] mt-2">
               <img
-  className="absolute top-[-45%] left-[38%] max-[1200px]:bg-red-500 max-[1200px]:left-[45%] mb-[90px] rotate-[15deg] w-[130px] h-[144px] z-10"
+  className="absolute top-[-45%] left-[38%] max-[1200px]:left-[45%] mb-[90px] rotate-[15deg] w-[130px] h-[144px] z-10"
   src="/figmaAssets/cyan-2--1--1.png"
   alt="img"
 />
@@ -606,89 +605,41 @@ export const Homepage = () => {
   <img
     src={wavebrand}
     alt="wavebrand"
-    className="mt-[-10%] z-[0] ml-[-12%] max-w-none h-full object-cover"
-    style={{
-      width: "120%",
-      display: "block",
-     
-    }}
+    className="mt-[-10%] z-[0] ml-[-12%] max-w-none h-full w-[120%] object-cover block"
   />
 </div>
 
         </section>
 
         {/* Instagram Section */}
-        <section   className="relative overflow-hidden"
+        <section   className="relative overflow-hidden bg-[#F4D548] -mt-[100px] pb-0 z-[1]"
   data-testid="section-instagram"
-  style={{
-    background: "#F4D548",
-    marginTop: "-100px",   // pulls section under wave
-    // paddingTop: "140px",   // prevents heading overlap
-    paddingBottom: "0",
-    zIndex: 1,
-  }}
 >
           {/* Header with Stars */}
           
 
           {/* Instagram Carousel - Auto-scrolling, pauses on hover */}
           <div 
-            className="instagram-carousel-container group"
-            style={{ 
-              overflow: 'hidden', 
-              position: 'relative',
-              paddingBottom: '20px'
-            }}
+            className="instagram-carousel-container group relative overflow-hidden pb-5"
           >
             <div 
-              className="instagram-carousel"
-              style={{
-                display: 'flex',
-                gap: '12px',
-                paddingLeft: '16px',
-                paddingRight: '16px',
-                animation: 'scrollLeft 25s linear infinite',
-              }}
+              className="instagram-carousel flex gap-3 pl-4 pr-4 animate-[scrollLeft_25s_linear_infinite]"
             >
               {/* Duplicate images for seamless loop */}
               {[...instagramImages, ...instagramImages].map((img, index) => (
                 <div 
                   key={index}
-                  className="instagram-card group/card"
-                  style={{ 
-                    position: 'relative',
-                    flexShrink: 0,
-                    width: 'clamp(200px, 50vw, 280px)',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    background: 'white',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
-                  }}
+                  className="instagram-card group/card relative shrink-0 [width:clamp(200px,50vw,280px)] rounded-[16px] overflow-hidden bg-white shadow-[0_4px_15px_rgba(0,0,0,0.1)]"
                 >
                   {/* Instagram Header - Shows on hover */}
                   <div 
-                    className="instagram-header"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      background: 'white',
-                      padding: '12px 14px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      opacity: 0,
-                      transform: 'translateY(-100%)',
-                      transition: 'all 0.3s ease',
-                      zIndex: 10
-                    }}
+                    className="instagram-header absolute inset-x-0 top-0 bg-white py-3 px-[14px] flex items-center justify-between opacity-0 -translate-y-full transition-all duration-300 ease-linear z-10"
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ color: 'white', fontSize: '10px', fontWeight: 700 }}>S</span>
+                    <div className="flex items-center gap-[10px]">
+                      <div className="w-8 h-8 rounded-full bg-[linear-gradient(135deg,#f09433_0%,#e6683c_25%,#dc2743_50%,#cc2366_75%,#bc1888_100%)] flex items-center justify-center">
+                        <span className="text-white text-[10px] font-bold">S</span>
                       </div>
-                      <span style={{ color: '#262626', fontSize: '14px', fontWeight: 600 }}>Splenda</span>
+                      <span className="text-[#262626] text-[14px] font-semibold">Splenda</span>
                     </div>
                     <svg width="16" height="4" viewBox="0 0 16 4" fill="none">
                       <circle cx="2" cy="2" r="2" fill="#262626"/>
@@ -700,35 +651,15 @@ export const Homepage = () => {
                   {/* Image */}
                   <img
                     src={img.src}
-                    style={{ 
-                      width: '100%', 
-                      height: '320px', 
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
+                    className="w-full h-[320px] object-cover block"
                     alt="Instagram post"
                   />
 
                   {/* Instagram Footer - Shows on hover */}
                   <div 
-                    className="instagram-footer"
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      background: 'white',
-                      padding: '12px 14px',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      opacity: 0,
-                      transform: 'translateY(100%)',
-                      transition: 'all 0.3s ease',
-                      zIndex: 10
-                    }}
+                    className="instagram-footer absolute inset-x-0 bottom-0 bg-white py-3 px-[14px] flex justify-between items-center opacity-0 translate-y-full transition-all duration-300 ease-linear z-10"
                   >
-                    <div style={{ display: 'flex', gap: '16px' }}>
+                    <div className="flex gap-4">
                       {/* Heart */}
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="#ed4956" stroke="#ed4956" strokeWidth="2">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -823,8 +754,8 @@ export const Homepage = () => {
           </div>
 
           {/* Yellow to Blue Wave Transition */}
-          {/* <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', overflow: 'hidden' }}>
-            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ position: 'absolute', bottom: 0, width: '100%', height: '100%' }}>
+          {/* <div className="absolute bottom-0 left-0 right-0 h-[80px] overflow-hidden">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="absolute bottom-0 w-full h-full">
               <path d="M0,80 L0,40 C240,80 480,0 720,10 C960,20 1200,60 1440,30 L1440,80 Z" fill="#1EA4C9"/>
             </svg>
           </div> */}
@@ -851,23 +782,12 @@ export const Homepage = () => {
 
         {/* Merch Section */}
         <div
-                  className="hidden lg:block pointer-events-none"
-  style={{
-    position: "absolute",
-    width: "140%",
-    lineHeight: 0,
-    zIndex: 10,
-    marginLeft: "-14%",
-                    marginTop: "-20%",
-  }}
+                  className="hidden lg:block pointer-events-none absolute w-[140%] leading-[0] z-10 ml-[-14%] mt-[-20%]"
 >
   <img
     src={waveblue}
     alt="Blue Wave" 
-    style={{
-      width: "100%",
-      display: "block",
-    }}
+    className="w-full block"
   />
 </div>
        <section className="relative bg-[#00AEEF] -mt-10 lg:-mt-20 pb-12 sm:pb-16 lg:pb-20 overflow-hidden">
@@ -932,11 +852,7 @@ export const Homepage = () => {
     </span>
 
     <h2
-      className="text-[#F4D548] text-[28px] sm:text-[36px] lg:text-[44px] text-center leading-tight px-4"
-      style={{
-        fontFamily: "'Luckiest Guy', cursive",
-        textShadow: "2px 2px 0 #b8920a",
-      }}
+      className="text-[#F4D548] text-[28px] sm:text-[36px] lg:text-[44px] text-center leading-tight px-4 font-['Luckiest_Guy',cursive] drop-shadow-[2px_2px_0_#b8920a]"
     >
       CALORIE SAVING <br /> FROM SPLENDA
     </h2>
@@ -961,7 +877,7 @@ export const Homepage = () => {
   <div className="relative bg-white pb-16 sm:pb-20 lg:pb-24 pt-1 ">
 
     {/* 🟡 Splenda Packets - Perfect Overlap */}
-    <div className="absolute left-1/2 -translate-x-1/2 -top-10 sm:-top-12 lg:-top-16 flex items-center" style={{ zIndex: 1000 }}>
+    <div className="absolute left-1/2 -translate-x-1/2 -top-10 sm:-top-12 lg:-top-16 flex items-center z-[1000]">
       <img
         src={tophi}
         alt="packet"
@@ -978,8 +894,7 @@ export const Homepage = () => {
     <div className="relative z-20 mt-12 sm:mt-16 lg:mt-20 flex justify-center rotate-[-2deg] px-4">
       <div className="bg-white border-2 border-[#0C3C60] rounded-full px-6 sm:px-10 lg:px-16 py-2 sm:py-3 lg:py-4 shadow-md">
         <span
-          className="text-[#1EA4C9] text-lg sm:text-2xl lg:text-[40px] font-bold tracking-wide"
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
+          className="text-[#1EA4C9] text-lg sm:text-2xl lg:text-[40px] font-bold tracking-wide font-['DM_Sans',sans-serif]"
         >
           1,240,285,547,996
         </span>
@@ -1004,7 +919,7 @@ export const Homepage = () => {
       <footer className="relative bg-white pt-8 sm:pt-12 lg:pt-16 pb-6 sm:pb-8" data-testid="footer-main">
         {/* Large Splenda watermark background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.03]">
-          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px] sm:text-[300px] lg:text-[400px] font-bold text-brand-color3 whitespace-nowrap" style={{ fontFamily: "'Pacifico', cursive" }}>
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px] sm:text-[300px] lg:text-[400px] font-bold text-brand-color3 whitespace-nowrap font-['Pacifico',cursive]">
             Splenda
           </span>
         </div>
@@ -1016,9 +931,9 @@ export const Homepage = () => {
             <div className="w-full lg:w-[420px] lg:shrink-0">
               {/* I USE Splenda DO YOU? Header */}
               <h2 className="mb-4 sm:mb-6 text-center lg:text-left">
-                <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px]" style={{ fontFamily: "'Luckiest Guy', cursive" }}>I USE </span>
-                <span className="text-brand-color2 text-2xl sm:text-[28px] lg:text-[32px]" style={{ fontFamily: "'Pacifico', cursive" }}>Splenda </span>
-                <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px]" style={{ fontFamily: "'Luckiest Guy', cursive" }}>DO YOU?</span>
+                <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px] font-['Luckiest_Guy',cursive]">I USE </span>
+                <span className="text-brand-color2 text-2xl sm:text-[28px] lg:text-[32px] font-['Pacifico',cursive]">Splenda </span>
+                <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px] font-['Luckiest_Guy',cursive]">DO YOU?</span>
               </h2>
               
               {/* Sweet Dish Card */}
@@ -1034,8 +949,8 @@ export const Homepage = () => {
                 
                 {/* Sweet Dish Logo */}
                 <div className="mb-2 sm:mb-3">
-                  <span className="text-white text-[9px] sm:text-[10px] block" style={{ fontFamily: "'DM Sans', sans-serif" }}>the</span>
-                  <span className="text-white text-xl sm:text-2xl lg:text-[28px] font-bold" style={{ fontFamily: "'Pacifico', cursive" }}>sweet d!sh</span>
+                  <span className="text-white text-[9px] sm:text-[10px] block font-['DM_Sans',sans-serif]">the</span>
+                  <span className="text-white text-xl sm:text-2xl lg:text-[28px] font-bold font-['Pacifico',cursive]">sweet d!sh</span>
                   <span className="text-white text-sm sm:text-lg align-top">®</span>
                 </div>
                 
@@ -1057,7 +972,7 @@ export const Homepage = () => {
               
               {/* Follow Us Section */}
               <div className="mb-4 sm:mb-6">
-                <h3 className="text-brand-color3 text-base sm:text-lg lg:text-[20px] mb-3 sm:mb-4 text-center lg:text-left" style={{ fontFamily: "'Luckiest Guy', cursive" }}>FOLLOW US</h3>
+                <h3 className="text-brand-color3 text-base sm:text-lg lg:text-[20px] mb-3 sm:mb-4 text-center lg:text-left font-['Luckiest_Guy',cursive]">FOLLOW US</h3>
                 <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4 flex-wrap">
                   {/* Facebook */}
                   <a href="#" className="text-brand-color3 hover:text-brand-color2 transition-colors">
@@ -1109,7 +1024,7 @@ export const Homepage = () => {
             <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
               {/* Quick Links */}
               <div>
-                <h4 className="text-brand-color3 text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4" style={{ fontFamily: "'Luckiest Guy', cursive" }}>QUICK LINKS</h4>
+                <h4 className="text-brand-color3 text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4 font-['Luckiest_Guy',cursive]">QUICK LINKS</h4>
                 <ul className="flex flex-col gap-1.5 sm:gap-2 text-brand-color3 text-xs sm:text-sm lg:text-[15px]">
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">Products</li>
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">Where to Buy</li>
@@ -1126,7 +1041,7 @@ export const Homepage = () => {
               
               {/* Quick Links Column 2 */}
               <div>
-                <h4 className="text-transparent text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4 hidden sm:block" style={{ fontFamily: "'Luckiest Guy', cursive" }}>&nbsp;</h4>
+                <h4 className="text-transparent text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4 hidden sm:block font-['Luckiest_Guy',cursive]">&nbsp;</h4>
                 <ul className="flex flex-col gap-1.5 sm:gap-2 text-brand-color3 text-xs sm:text-sm lg:text-[15px]">
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">Healthcare Professionals</li>
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">Food Service</li>
@@ -1142,7 +1057,7 @@ export const Homepage = () => {
               
               {/* Company */}
               <div>
-                <h4 className="text-brand-color3 text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4" style={{ fontFamily: "'Luckiest Guy', cursive" }}>COMPANY</h4>
+                <h4 className="text-brand-color3 text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4 font-['Luckiest_Guy',cursive]">COMPANY</h4>
                 <ul className="flex flex-col gap-1.5 sm:gap-2 text-brand-color3 text-xs sm:text-sm lg:text-[15px]">
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">Recipe</li>
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">About Us</li>
@@ -1155,7 +1070,7 @@ export const Homepage = () => {
               
               {/* Legal */}
               <div>
-                <h4 className="text-brand-color3 text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4" style={{ fontFamily: "'Luckiest Guy', cursive" }}>LEGAL</h4>
+                <h4 className="text-brand-color3 text-sm sm:text-base lg:text-[18px] mb-3 sm:mb-4 font-['Luckiest_Guy',cursive]">LEGAL</h4>
                 <ul className="flex flex-col gap-1.5 sm:gap-2 text-brand-color3 text-xs sm:text-sm lg:text-[15px]">
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">Privacy Policy</li>
                   <li className="hover:text-brand-color2 cursor-pointer transition-colors">Terms & Conditions</li>
