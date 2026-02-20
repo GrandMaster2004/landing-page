@@ -160,28 +160,46 @@ export const Homepage = () => {
       <div className="w-full">
 
   {/* ✅ Navbar - Sticks to Top Without Overlap */}
-  <header className="sticky top-0 left-0 w-full h-[60px] lg:h-[70px] flex items-center px-4 sm:px-6 lg:px-[60px] justify-between bg-white z-50 shadow-sm">
+  <header className="sticky top-0 left-0 w-full min-h-[60px] lg:h-[70px] flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between px-4 sm:px-6 lg:px-[60px] bg-white z-50 shadow-sm py-4 lg:py-0">
 
-    {/* Logo */}
-    <div className="flex items-baseline gap-1">
-      <img
-        src={logoimg}
-        alt="logoimg"
-        className="h-6 sm:h-7 w-[160px] lg:w-[130px] min-[1100px]:w-[115px] xl:w-[160px] lg:h-auto object-contain"
-      />
+    {/* Mobile Branding + Search */}
+    <div className="flex w-full flex-col gap-3 lg:hidden">
+      <div className="flex items-center justify-between">
+        <p className="text-[#1EA4C9] text-lg font-['Luckiest_Guy',cursive]">
+          <span className="mr-1">I USE</span>
+          <span className="text-brand-color2 font-['Pacifico',cursive]">Splenda</span>
+          <span className="ml-1">DO YOU?</span>
+        </p>
+        <button
+          className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-brand-color3 text-white shadow-[2px_2px_0px_#0C3C60]"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
+      <div className="relative h-[48px]">
+        <Input
+          placeholder="Looking for something sweet..."
+          className="h-full w-full rounded-full border-[2px] border-[#1E3E7C] bg-white pl-4 pr-12 text-sm text-[#1E3E7C] placeholder:text-[#1E3E7C]/60"
+        />
+        <SearchIcon className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#1E3E7C]" strokeWidth={1.6} />
+      </div>
     </div>
 
-    {/* Mobile Menu Button */}
-    <button 
-      className="lg:hidden p-2 text-[#0C3C60]" 
-      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-      aria-label="Toggle menu"
-    >
-      {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-    </button>
+    {/* Desktop Layout */}
+    <div className="hidden w-full items-center justify-between lg:flex">
+      <div className="flex items-center gap-6">
+        <div className="flex items-baseline gap-1">
+          <img
+            src={logoimg}
+            alt="logoimg"
+            className="h-6 w-[160px] lg:w-[130px] min-[1100px]:w-[115px] xl:w-[160px] object-contain"
+          />
+        </div>
 
-    {/* Navigation - Desktop */}
-    <nav className="hidden lg:flex gap-8 lg:gap-5 min-[1100px]:gap-4 xl:gap-8 items-center">
+        {/* Navigation - Desktop */}
+        <nav className="flex gap-8 lg:gap-5 min-[1100px]:gap-4 xl:gap-8 items-center">
       {navigationItems.map((item, index) => {
         if (item.label === "Products") {
           return (
@@ -253,16 +271,18 @@ export const Homepage = () => {
           </button>
         );
       })}
-    </nav>
+        </nav>
+      </div>
 
-    {/* Search - Desktop */}
-    <div className="hidden lg:block relative w-[400px] lg:w-[300px] min-[1100px]:w-[250px] xl:w-[400px] h-[32px]">
-      <Input
-        placeholder="Looking for something sweet..."
-        className="absolute inset-0 h-full w-full rounded-full border-[1px] border-[#1E3E7C] bg-[#F2F4F7] shadow-[1px_2px_0px_#1E3E7C] pl-6 pr-8 text-lg  text-[#1E3E7C] placeholder:text-[#1E3E7C]/60 focus-visible:ring-0 focus-visible:border-[#1E3E7C]"
-      />
-      <div className="pointer-events-none absolute right-4 top-1/2 flex -translate-y-1/2 items-center justify-center ">
-        <SearchIcon className="h-5 w-6 text-[#1E3E7C]" strokeWidth={1.5} />
+      {/* Search - Desktop */}
+      <div className="relative w-[400px] lg:w-[300px] min-[1100px]:w-[250px] xl:w-[400px] h-[32px]">
+        <Input
+          placeholder="Looking for something sweet..."
+          className="absolute inset-0 h-full w-full rounded-full border-[1px] border-[#1E3E7C] bg-[#F2F4F7] shadow-[1px_2px_0px_#1E3E7C] pl-6 pr-8 text-lg  text-[#1E3E7C] placeholder:text-[#1E3E7C]/60 focus-visible:ring-0 focus-visible:border-[#1E3E7C]"
+        />
+        <div className="pointer-events-none absolute right-4 top-1/2 flex -translate-y-1/2 items-center justify-center ">
+          <SearchIcon className="h-5 w-6 text-[#1E3E7C]" strokeWidth={1.5} />
+        </div>
       </div>
     </div>
 
@@ -406,65 +426,105 @@ export const Homepage = () => {
   {/* ================= SECTION CONTENT white wave ================= */}
   <div className="relative z-10 bg-[#FBDF52] pb-[20%] overflow-hidden">
 
-    {/* Yellow Star - Left Side */}
- 
+    {/* Mobile Layout */}
+    <div className="md:hidden px-4 pt-10 pb-16 flex flex-col gap-10">
+      <div className="relative flex flex-col items-center text-center gap-3">
+        <img
+          src={for_every}
+          alt="for_every"
+          className="max-w-[280px] w-full h-auto object-contain"
+        />
+        <p className="text-[#0C3C60] text-base leading-snug font-semibold max-w-[320px]">
+          The only low calorie sweetener made in the USA
+        </p>
+        <img
+          className="absolute -left-3 -top-4 w-[55px] h-[60px] rotate-[12deg]"
+          src="/figmaAssets/cyan-2--1--1.png"
+          alt=""
+        />
+      </div>
 
-    {/* Heading */}
- <div className="text-center lg:text-right mr-0 lg:mr-32 mb-8 lg:mb-12 px-4 sm:px-6 flex flex-col items-center lg:items-end">
+      <div className="grid grid-cols-2 gap-3">
+        {categoryTabs.map((tab) => (
+          <button
+            key={tab.label}
+            className={`rounded-full border-[2px] border-[#0C3C60] py-3 text-sm font-bold tracking-wide transition-all ${
+              tab.active
+                ? "bg-[#EBFAFF] text-[#0C3C60] shadow-[2px_2px_0px_#0C3C60]"
+                : "bg-white text-[#0C3C60]/80"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-  {/* Image Heading */}
-  <img
-    src={for_every}
-    alt="for_every"
-    className="max-w-[280px] sm:max-w-[400px] lg:max-w-[520px] w-full h-auto object-contain"
-  />
-
-  {/* Subtitle */}
-  <p className="text-[#0C3C60] text-sm sm:text-base md:text-[20px] lg:text-[24px] leading-[1.5] font-semibold mt-3 lg:mt-4 max-w-[720px]">
-    The only low calorie sweetener made in the USA
-  </p>
-
-</div>
-
-
-    {/* Category Tabs */}
-    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 lg:mb-16 px-4 sm:px-6">
-      {categoryTabs.map((tab, index) => (
-        <Button
-          key={index}
-          variant={tab.active ? "default" : "outline"}
-          className={`px-6 py-3 text-base lg:px-4 lg:py-2 lg:text-sm min-[1100px]:px-3 min-[1100px]:py-2 min-[1100px]:text-xs xl:px-6 xl:text-base rounded-full font-bold border-2 border-brand-color3 whitespace-nowrap ${
-            tab.active
-              ? "bg-[#ebfaff] text-brand-color3 shadow-[2px_2px_0px_#0C3C60]"
-              : "bg-white text-brand-color3"
-          }`}
-        >
-          {tab.label}
-        </Button>
-      ))}
-    </div>
-
-    {/* Product Cards */}
-     <img
-              className="absolute pointer-events-none top-[17%] left-[4%] -right-34 mb-[90px] w-[80px] h-[90px] sm:w-[100px] sm:h-[114px] lg:w-[130px] lg:h-[144px] scale-100 lg:scale-90 min-[1100px]:scale-75 xl:scale-100 z-10 hidden md:block"
-              src="/figmaAssets/cyan-2--1--1.png"
-              alt=""
+      <div className="flex flex-col gap-10">
+        {productImages.map((product) => (
+          <div key={product.badge} className="relative pb-8">
+            <img
+              src={product.src}
+              alt={product.badge}
+              className="w-full h-[260px] rounded-[28px] object-cover border-[3px] border-[#F7C94C] shadow-[0_10px_0px_rgba(12,60,96,0.15)]"
             />
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-12 sm:gap-8 px-4 sm:px-6 lg:px-[100px] ">
-      {productImages.map((product, index) => (
-        <div key={index} className="relative group cursor-pointer flex flex-col items-center">
-          <img
-            src={product.src}
-            className="w-[420px] lg:w-[360px] min-[1100px]:w-[320px] xl:w-[420px] max-w-full h-[320px] sm:h-[360px] lg:h-[420px] rounded-[24px] object-cover border-2 border-transparent hover:border-brand-color3 transition-all"
-            alt=""
-          />
-          <div className="mt-6 whitespace-nowrap">
-            <Button className="h-[48px] px-8 bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-base font-bold">
+            <Button className="absolute left-1/2 -bottom-2 -translate-x-1/2 h-[46px] px-10 rounded-full bg-[#0C3C60] border border-[#0C3C60] text-white text-sm font-bold shadow-[0_6px_0px_rgba(12,60,96,0.45)]">
               {product.badge}
             </Button>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+    </div>
+
+    {/* Tablet & Desktop Layout */}
+    <div className="hidden md:block">
+      <div className="text-center lg:text-right mr-0 lg:mr-32 mb-8 lg:mb-12 px-4 sm:px-6 flex flex-col items-center lg:items-end">
+        <img
+          src={for_every}
+          alt="for_every"
+          className="max-w-[280px] sm:max-w-[400px] lg:max-w-[520px] w-full h-auto object-contain"
+        />
+        <p className="text-[#0C3C60] text-sm sm:text-base md:text-[20px] lg:text-[24px] leading-[1.5] font-semibold mt-3 lg:mt-4 max-w-[720px]">
+          The only low calorie sweetener made in the USA
+        </p>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 lg:mb-16 px-4 sm:px-6">
+        {categoryTabs.map((tab, index) => (
+          <Button
+            key={index}
+            variant={tab.active ? "default" : "outline"}
+            className={`px-6 py-3 text-base lg:px-4 lg:py-2 lg:text-sm min-[1100px]:px-3 min-[1100px]:py-2 min-[1100px]:text-xs xl:px-6 xl:text-base rounded-full font-bold border-2 border-brand-color3 whitespace-nowrap ${
+              tab.active
+                ? "bg-[#ebfaff] text-brand-color3 shadow-[2px_2px_0px_#0C3C60]"
+                : "bg-white text-brand-color3"
+            }`}
+          >
+            {tab.label}
+          </Button>
+        ))}
+      </div>
+
+      <img
+        className="absolute pointer-events-none top-[17%] left-[4%] -right-34 mb-[90px] w-[80px] h-[90px] sm:w-[100px] sm:h-[114px] lg:w-[130px] lg:h-[144px] scale-100 lg:scale-90 min-[1100px]:scale-75 xl:scale-100 z-10 hidden md:block"
+        src="/figmaAssets/cyan-2--1--1.png"
+        alt=""
+      />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-12 sm:gap-8 px-4 sm:px-6 lg:px-[100px] ">
+        {productImages.map((product, index) => (
+          <div key={index} className="relative group cursor-pointer flex flex-col items-center">
+            <img
+              src={product.src}
+              className="w-[420px] lg:w-[360px] min-[1100px]:w-[320px] xl:w-[420px] max-w-full h-[320px] sm:h-[360px] lg:h-[420px] rounded-[24px] object-cover border-2 border-transparent hover:border-brand-color3 transition-all"
+              alt=""
+            />
+            <div className="mt-6 whitespace-nowrap">
+              <Button className="h-[48px] px-8 bg-brand-color3 border border-black rounded-full shadow-[2px_2px_0px_#000] text-white text-base font-bold">
+                {product.badge}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
 
   </div>
