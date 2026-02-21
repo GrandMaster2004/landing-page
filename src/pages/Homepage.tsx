@@ -24,7 +24,7 @@ import inst from "../../public/figmaAssets/inst.svg";
 import check from "../../public/figmaAssets/check.svg";
 import avatar from "../../public/figmaAssets/avatar.svg";
 import socials from "../../public/figmaAssets/Socials1.svg";
-// import inst_icon from "../../public/figmaAssets/inst_icon.png";
+import sweet from "../../public/figmaAssets/image-18-1.png";
 import follow from "../../public/figmaAssets/follw.svg";
 
 const navigationItems = [
@@ -445,9 +445,9 @@ export const Homepage = () => {
 
           {/* Hero Background */}
           <img
-            src="/figmaAssets/heroimg.svg"
+            src="/figmaAssets/heroimg.svg" 
             alt="Hero background"
-            className="absolute left-0 right-0 top-0 bottom-0 w-full h-full min-w-full min-h-full max-w-none object-cover object-center "
+            className="hero_img absolute left-0 right-0 top-0 bottom-0 w-full h-full min-w-full min-h-full max-w-none object-cover object-center "
             loading="eager"
             decoding="sync"
           />
@@ -465,16 +465,21 @@ export const Homepage = () => {
 
       {/* 🔹 Cyan Wave (FULL WIDTH – SAME POSITION) */}
       {/* 🔹 Cyan Wave */}
-          <style>
-{`
+      <style>
+        {`
   @media (min-width: 1600px) {
     .cyanWave {
       margin-top: -310px !important; /* 🔥 change value if needed */
     }
   }
+    @media (max-width: 489px) {
+    .cyanWave {
+      margin-top: -50px !important; /* 🔥 change value if needed */
+    }
+  }
 `}
-</style>
-      <div className="relative w-full pointer-events-none z-10">
+      </style>
+      <div className="relative w-full pointer-events-none z-10 topwavetext">
         <img
           src={cyanWave}
           alt="Cyan Wave"
@@ -485,9 +490,9 @@ export const Homepage = () => {
 
       -mt-[80px]       /* 📱 mobile */
       sm:-mt-[100px]   /* 📲 tablet */
-      lg:-mt-[160px]   /* 💻 desktop */
+      lg:-mt-[155px]   /* 💻 desktop */
       
-    " 
+    "
         />
       </div>
       {/* Main Content Container - Flowing smoothly */}
@@ -525,43 +530,157 @@ export const Homepage = () => {
       z-index: 10;
     }
       .star_img{
-      top: 4rem !important;
+      top: 20rem !important;
+      z-index: 20;
       }
-      .find_your{
-      padding: 0;
-      margin: 0;
-      height: 134px;
-      width: 100%;
+          .find_your{
+        padding: 0;
+        width: 150%;
+        }
+
+            .topwavetext{
+            padding-bottom: 17rem;
+            }
+
+      .Quiz1{
+      position: absolute;
+      
+      
+      margin-top: -18rem;
+      left: 2%;
       }
-      .Quiz{
-      padding: 0 10px;
-      // margin: 0;
+      .find_your1{
+      
+      height: 100px;
+      width: 120%;
       }
   }
 
+ 
   @media (max-width: 461px) {
     .quiz-main-img {
-      top: -20px;
+      top: -45px;
+      left: 61px;
     }
     .star_top{
-      top: 230px !important;}
-  }
-       .Quiz{
-      padding: 0 10px;
-      // margin: 0;
+      top: 200px !important;
+  }  
+      .top_star2{margin-top: 25px;}
+      }
+      
+
+        @media (max-width: 385px) {
+    .quiz-main-img {
+      top: -75px !important;
+      left: 61px;
+    }
+    .star_top{
+      top: 235px !important;
+  }  
       }
 
-       @media (max-width: 381px) {
-     .star_top{
-      top: 250px !important;}
-  }
+       @media (max-width: 380px) {
+        .star_top{
+        position: absolute;
+          top: 250rem !important;
+          }
       }
-  
+       
+
+
+      .star_hide {
+  display: none;
+}
+
+@media (max-width: 646px) {
+  .star_hide {
+    display: block;
+    position: absolute;
+    z-index: 520;
+    height: 70px;
+    width: 70px;
+    right: 4%;
+    top: 0rem !important;
+  }
+    .main_image{
+            z-index: 10 !important;
+            
+    }
+}
+
+
+@media (max-width: 380px) {
+            .cyanWave{
+            position: absolute !important;
+            top: 4rem !important;
+            z-index: 100 !important;
+            }
+            .hero_img{
+                min-height: 70vh !important;
+                z-index: 1 !important;
+            }
+    .find_your1 {
+        height: 57px !important;
+        width: 91% !important;
+        left: -50px !important;
+        margin-bottom: 10px !important;
+        margin-left: 10px !important;
+        margin-top: 90px !important;
+    }
+
+  /* Reset section positioning */
+  .Quiz1 {
+    position: relative !important;
+    margin-top: 0 !important;
+    left: 0 !important;
+   
+  }
+
+  /* Keep image centered properly */
+  .quiz-img-shell {
+    height: 320px !important;
+  }
+
+  .quiz-main-img {
+    position: absolute;
+    top: -40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 230px !important;
+  }
+
+  /* Fix star position */
+  .star_top {
+    position: relative !important;
+    top: 0 !important;
+  }
+
+  .star_img {
+    top: 15rem !important;
+  }
+    .top_star2 {
+        margin-top: 10px !important;
+    }
+    .topwavetext{
+    padding-bottom: 0px !important;
+    }
+                .quiz-main-img {
+        position: absolute;
+        top: 254px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 230px !important;
+    }
+        .top_star2{
+        top: 11rem !important;
+        }
+}
+
 `}
         </style>
         {/* Quiz Section */}
         <section
-          className=" Quiz
+          className="Quiz1
     relative
     px-4 sm:px-6 lg:px-[100px]
      sm:pt-[6rem] lg:pt-[0rem]
@@ -603,9 +722,9 @@ export const Homepage = () => {
 
               {/* ⭐ TOP STAR */}
               <img
-                className="
+                className=" top_star2
       absolute
-      -top-12
+      -top-[6rem]
       w-[70px]
       h-[75px]
       sm:w-[100px]
@@ -618,6 +737,8 @@ export const Homepage = () => {
                 src="/figmaAssets/cyan-2--1--1.png"
                 alt="star"
               />
+
+
 
               {/* Yellow ellipse for mobile */}
               <div
@@ -640,9 +761,9 @@ export const Homepage = () => {
 
               {/* MAIN IMAGE */}
               <img
-                className="
-
+                className=" main_image
     relative
+    z-[9999]
     w-full
     h-auto
     rounded-[20px]
@@ -680,17 +801,17 @@ export const Homepage = () => {
           </div>
 
           {/* TEXT SIDE */}
-          <div className="max-w-[500px] text-center lg:text-left">
+          <div className="max-w-[500px] text-center lg:text-left side_text">
 
-            <h2 className=" find_your mb-4 sm:mb-6 flex justify-center lg:justify-start max-[537px]:w-[120%]  max-[537px]:h-[264px]">
+            <h2 className=" find_your1 mb-4 sm:mb-6 flex justify-center lg:justify-start max-[537px]:w-[120%]  max-[537px]:h-[264px]">
               <img
                 src={find_your}
                 alt="find_your"
-                className="w-[200px] sm:w-[280px] lg:w-auto h-auto max-[646px]:w-[260px]"
+                className="find_your w-[200px] sm:w-[280px] lg:w-auto h-auto max-[646px]:w-[260px]"
               />
             </h2>
 
-            <p className="text-brand-color3 text-sm leading-tight sm:text-lg sm:leading-normal lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
+            <p className="text-brand-color3  leading-tight sm:text-lg sm:leading-normal lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
               Take a short quiz to find out which Splenda products are right for you.
             </p>
 
@@ -732,6 +853,11 @@ export const Homepage = () => {
               src={topwaveyellow}
               alt="Top Wave"
               className="w-full object-cover"
+            />
+            <img
+              className="hidden star_hide"
+              src="/figmaAssets/cyan-2--1--1.png"
+              alt="star"
             />
           </div>
 
@@ -947,7 +1073,7 @@ export const Homepage = () => {
     top-[95%]        
     sm:top-[91%]   
     lg:top-[85%]     
-    // max-[380px]:top-[95%]  
+ 
   "
           >
             <img
@@ -1342,70 +1468,64 @@ export const Homepage = () => {
           </div>
 
 
-          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-center lg:justify-around gap-8 lg:gap-0 pt-12 sm:pt-16 lg:pt-[90px] px-4 max-[1200px]:pb-6 sm:px-6 pb-40 sm:pb-60  relative z-5">
+          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-center lg:justify-around gap-8 lg:gap-0 pt-12 sm:pt-16 lg:pt-[90px] px-4 max-[1200px]:pb-6 sm:px-6 pb-24 sm:pb-60  relative z-5">
             {/* @SPLENDA Button */}
-            <button className="flex items-center gap-2 bg-[#0C3C60] text-white py-3 px-6 sm:py-3.5 sm:px-7 rounded-full text-sm sm:text-base font-bold cursor-pointer border-none lg:ml-[39%]">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <rect width="24" height="24" rx="6" fill="url(#instagram-gradient)" />
-                <circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" fill="none" />
-                <circle cx="18" cy="6" r="1.5" fill="white" />
-                <defs>
-                  <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#f09433" />
-                    <stop offset="25%" stopColor="#e6683c" />
-                    <stop offset="50%" stopColor="#dc2743" />
-                    <stop offset="75%" stopColor="#cc2366" />
-                    <stop offset="100%" stopColor="#bc1888" />
-                  </linearGradient>
-                </defs>
+            <button className="flex items-center gap-2 bg-[#0C3C60] text-white py-3 px-7 sm:py-3.5 sm:px-7 rounded-full text-sm sm:text-base font-bold cursor-pointer border-none lg:ml-[39%] shadow-[0_4px_0_#0B3A74] sm:shadow-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
               </svg>
               @SPLENDA
             </button>
 
             {/* Follow Our Socials */}
-            <div className="text-center lg:text-right">
+            <div className="relative text-center sm:text-right lg:text-right">
               <span className="flex justify-center lg:justify-end gap-2 mb-3">
                 <img src={follow} alt="follow" className="h-5 sm:h-6 lg:h-auto" /><img src={socials} alt="socials" className="h-5 sm:h-6 lg:h-auto" />
               </span>
-              <div className="flex gap-2 sm:gap-3 justify-center lg:justify-end">
+              <div className="relative flex gap-2 sm:gap-3 sm:ml-24 justify-center lg:justify-end">
                 {/* Instagram */}
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
-                  <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="white">
-                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="2" fill="none" />
-                    <circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" fill="none" />
-                    <circle cx="18" cy="6" r="1" fill="white" />
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="#0C3C60">
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="#0C3C60" strokeWidth="2" fill="none" />
+                    <circle cx="12" cy="12" r="4" stroke="#0C3C60" strokeWidth="2" fill="none" />
+                    <circle cx="18" cy="6" r="1" fill="#0C3C60" />
                   </svg>
                 </div>
                 {/* Facebook */}
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
-                  <svg className="w-2.5 h-4 sm:w-[10px] sm:h-[18px]" viewBox="0 0 10 18" fill="white">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full  flex items-center justify-center cursor-pointer">
+                  <svg className="w-2.5 h-4 sm:w-[10px] sm:h-[18px]" viewBox="0 0 10 18" fill="#0C3C60">
                     <path d="M6.5 6V4c0-.55.45-1 1-1H9V0H6.5C4.57 0 3 1.57 3 3.5V6H0v3h3v9h3.5V9H9l.5-3H6.5z" />
                   </svg>
                 </div>
                 {/* YouTube */}
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
-                  <svg className="w-4 h-3 sm:w-5 sm:h-3.5" viewBox="0 0 20 14" fill="white">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-3 sm:w-5 sm:h-3.5" viewBox="0 0 20 14" fill="#0C3C60">
                     <path d="M19.15 2.16A2.5 2.5 0 0 0 17.39.4C15.87 0 10 0 10 0S4.13 0 2.61.4A2.5 2.5 0 0 0 .85 2.16 26 26 0 0 0 .45 7a26 26 0 0 0 .4 4.84 2.5 2.5 0 0 0 1.76 1.76C4.13 14 10 14 10 14s5.87 0 7.39-.4a2.5 2.5 0 0 0 1.76-1.76A26 26 0 0 0 19.55 7a26 26 0 0 0-.4-4.84zM8 10V4l5.2 3L8 10z" />
                   </svg>
                 </div>
                 {/* LinkedIn */}
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
-                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="white">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full  flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="#0C3C60">
                     <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
                   </svg>
                 </div>
                 {/* Pinterest */}
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
-                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="white">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full  flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="#0C3C60">
                     <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z" />
                   </svg>
                 </div>
                 {/* TikTok */}
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
-                  <svg className="w-3.5 h-4" viewBox="0 0 14 16" fill="white">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer">
+                  <svg className="w-3.5 h-4" viewBox="0 0 14 16" fill="#0C3C60">
                     <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0z" transform="translate(-1)" />
                   </svg>
                 </div>
+                <img
+                  src="/figmaAssets/cyan-2--1--1.png"
+                  alt=""
+                  className="sm:hidden absolute -right-8 -top-7 w-10 h-10 opacity-80 blur-[0.5px] pointer-events-none"
+                />
               </div>
             </div>
           </div>
@@ -1739,14 +1859,15 @@ export const Homepage = () => {
                   src={logoimg}
                   alt="logo"
                   className="
-          w-[180px]
-          md:w-[220px]
-          lg:w-[260px]
-          xl:w-[320px]
-          2xl:w-[380px]
-          h-auto
-          object-contain
-        "
+  mx-auto sm:m-auto
+  w-[180px]
+  md:w-[220px]
+  lg:w-[260px]
+  xl:w-[320px]
+  2xl:w-[380px]
+  h-auto
+  object-contain
+"
                 />
               </h2>
 
@@ -1763,9 +1884,7 @@ export const Homepage = () => {
 
                 {/* Sweet Dish Logo */}
                 <div className="mb-2 sm:mb-3">
-                  <span className="text-white text-[9px] sm:text-[10px] block font-['DM_Sans',sans-serif]">the</span>
-                  <span className="text-white text-xl sm:text-2xl lg:text-[28px] font-bold font-['Pacifico',cursive]">sweet d!sh</span>
-                  <span className="text-white text-sm sm:text-lg align-top">®</span>
+                  <img src={sweet} alt="" className="w-[100px] h-auto" />
                 </div>
 
                 <p className="text-white text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
@@ -1774,13 +1893,15 @@ export const Homepage = () => {
 
                 {/* Email Input */}
                 <div className="relative">
-                  <Input
-                    className="w-full h-[44px] sm:h-[50px] rounded-full border-2 border-brand-color3 bg-white pl-4 sm:pl-5 pr-20 sm:pr-28 text-sm sm:text-base text-brand-color3 placeholder:text-brand-color3/50"
-                    placeholder="Email..."
-                  />
-                  <Button className="absolute right-1 top-1 bottom-1 rounded-full bg-brand-color3 px-4 sm:px-6 text-sm sm:text-base font-bold text-white hover:bg-brand-color3/90">
-                    SUBMIT
-                  </Button>
+                  <div className="flex items-center h-[46px] sm:h-[50px] rounded-full border-[2.5px] border-brand-color3 bg-white shadow-[3px_3px_0_#0B3A74] overflow-hidden">
+                    <Input
+                      className="flex-1 h-full border-0 bg-transparent pl-4 sm:pl-5 pr-3 sm:pr-4 text-sm sm:text-base text-brand-color3 placeholder:text-brand-color3/60 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none"
+                      placeholder="Email..."
+                    />
+                    <Button className="h-full rounded-none rounded-full bg-brand-color3 px-5 sm:px-6 text-sm sm:text-base font-bold text-white hover:bg-brand-color3/90">
+                      SUBMIT
+                    </Button>
+                  </div>
                 </div>
               </div>
 
