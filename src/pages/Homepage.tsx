@@ -472,9 +472,94 @@ export const Homepage = () => {
       margin-top: -310px !important; /* 🔥 change value if needed */
     }
   }
+  @media (min-width: 1777px) {
+    .whiteWave {
+      height: 310px !important; /* 🔥 change value if needed */
+    }
+  }
+  @media (min-width: 1700px) {
+    .waveblue {
+      margin-top: -17% !important; 
+    }
+  }
+  @media (min-width: 2300px) {
+    .Yellow_Wave {
+      bottom: -250px !important; 
+    }
+  }
+  @media (min-width: 1800px) {
+    .Middle_Wave {
+      margin-top: -27px !important; 
+    }
+  }
+  @media (min-width: 2300px) {
+    .Middle_Wave {
+      margin-top: -115px !important; 
+    }
+  }
+  @media (min-width: 2000px) {
+    .SPLENDA_Button {
+      padding-bottom: 20% !important; 
+    }
+  }
+  @media (min-width: 2140px) {
+    .whiteWave {
+      height: 350px !important; /* 🔥 change value if needed */
+      bottom:-9% !important;
+    }
+  }
+  @media (min-width: 2400px) {
+    .whiteWave {
+     height: 390px !important;
+      bottom:-10% !important;
+    }
+  }
+  @media (max-width: 1145px) {
+    .bluestar {
+     display: none !important;
+    }
+  }
+  @media (max-width: 1085px) {
+    .whitesmokeWave {
+     top: 88% !important;
+    }
+  }
+  
+  @media (max-width: 1035px) {
+    .whitesmokeWave {
+     top: 90% !important;
+    }
+  }
+  @media (max-width: 845px) {
+    .whitesmokeWave {
+     top: 92% !important;
+    }
+  }
+  @media (max-width: 769px) {
+    .whitesmokeWave {
+     top: 94% !important;
+    }
+  }
+  @media (max-width: 639px) {
+    .whitesmokeWave {
+     top: 94% !important;
+    }
+  }
+  @media (max-width: 639px) {
+    .Instagram_Section {
+      margin-top: -20px !important;
+    }
+  }
+    @media (max-width: 390px) {
+    .whitesmokeWave {
+     top: 95% !important;
+    }
+  }
+ 
     @media (max-width: 489px) {
     .cyanWave {
       margin-top: -50px !important; /* 🔥 change value if needed */
+      
     }
   }
 `}
@@ -606,6 +691,12 @@ export const Homepage = () => {
             z-index: 10 !important;
             
     }
+}
+@media (max-width: 427px) {
+  .wavebrand {
+    margin-top: 10% !important;
+  }
+    
 }
 
 
@@ -782,6 +873,7 @@ export const Homepage = () => {
               {/* ⭐ BOTTOM STAR */}
               <img
                 className="
+                bluestar
       absolute
       -bottom-6
       -left-6
@@ -1067,6 +1159,7 @@ export const Homepage = () => {
           {/* ================= BOTTOM WAVE ================= */}
           <div
             className="
+            whitesmokeWave
     absolute
     right-36
     w-full
@@ -1086,7 +1179,7 @@ export const Homepage = () => {
       w-[200%]        /* 📱 Wider on phone */
       max-w-none
       object-cover
-
+                Middle_Wave
       sm:w-[130%]     /* Tablet */
       lg:w-[120%]     /* Desktop */
     "
@@ -1148,7 +1241,7 @@ export const Homepage = () => {
 
             <div className="relative -mx-4">
               <div className="overflow-hidden px-4">
-                <div className="flex gap-4 recipe-mobile-marquee animate-[recipeMarquee_22s_linear_infinite]">
+                <div className="my-8 flex gap-4 recipe-mobile-marquee animate-[recipeMarquee_22s_linear_infinite]">
                   {[...recipeCards, ...recipeCards].map((recipe, index) => (
                     <div
                       key={`mobile-recipe-${index}`}
@@ -1257,7 +1350,7 @@ export const Homepage = () => {
 
           {/* Yellow Wave Transition to Instagram Section */}
 
-          <div className="absolute bottom-[-60px] left-0 w-full z-0 pointer-events-none">
+          <div className="Yellow_Wave absolute bottom-[-60px] left-0 w-full z-0 pointer-events-none">
 
             <div className="px-4 sm:px-10 lg:px-[80px] mb-6 sm:mb-8 lg:mb-10 relative pointer-events-auto">
               <div className="flex items-start gap-3 relative">
@@ -1305,7 +1398,7 @@ export const Homepage = () => {
             <img
               src={wavebrand}
               alt="wavebrand"
-              className="
+              className=" wavebrand
       mt-[-10%]
       max-[1290px]:mt-[-4%]
       max-[1100px]:mt-[-1%]
@@ -1331,6 +1424,7 @@ export const Homepage = () => {
         {/* Instagram Section */}
         <section
           className="
+          Instagram_Section
     relative
     bg-[#F4D548]
     -mt-[60px]
@@ -1471,7 +1565,7 @@ export const Homepage = () => {
           </div>
 
 
-          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-center lg:justify-around gap-8 lg:gap-0 pt-12 sm:pt-16 lg:pt-[90px] px-4 max-[1200px]:pb-6 sm:px-6 pb-24 sm:pb-60  relative z-5">
+          <div className="SPLENDA_Button flex flex-col lg:flex-row items-center lg:items-end justify-center lg:justify-around gap-8 lg:gap-0 pt-12 sm:pt-16 lg:pt-[90px] px-4 max-[1200px]:pb-6 sm:px-6 pb-24 sm:pb-60  relative z-5">
             {/* @SPLENDA Button */}
             <button className="flex items-center gap-2 bg-[#0C3C60] text-white py-3 px-7 sm:py-3.5 sm:px-7 rounded-full text-sm sm:text-base font-bold cursor-pointer border-none lg:ml-[39%] shadow-[0_4px_0_#0B3A74] sm:shadow-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
@@ -1571,7 +1665,7 @@ export const Homepage = () => {
 
         {/* Merch Section */}
         <div
-          className=" lg:block pointer-events-none absolute w-[140%] leading-[0] z-10 ml-[-14%] mt-[-17%]"
+          className="waveblue lg:block pointer-events-none absolute w-[140%] leading-[0] z-10 ml-[-14%] mt-[-17%]"
         >
           <img
             src={waveblue}
@@ -1725,7 +1819,7 @@ export const Homepage = () => {
 
           </div>
 
-          <div className="hidden sm:gap-[0.5rem] sm:grid px-4 sm:px-4 lg:px-[100px] pt-6 sm:pt-6 lg:pt-[40px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
+          <div className="hidden sm:gap-[2.5rem] sm:grid px-4 sm:px-4 lg:px-[100px] pt-6 sm:pt-6 lg:pt-[40px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
             {merchProducts.map((product, index) => (
               <div
                 key={index}
@@ -1783,7 +1877,7 @@ export const Homepage = () => {
           </div>
 
           {/* White Wave Bottom */}
-          <div className="absolute bottom-[-7%] w-full h-[260px] overflow-hidden">
+          <div className=" whiteWave absolute bottom-[-7%] w-full h-[260px] overflow-hidden">
             <img
               src={SubtractWave}
               alt="Wave Divider"
