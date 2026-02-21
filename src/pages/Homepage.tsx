@@ -3,29 +3,29 @@ import { ChevronDownIcon, ChevronRightIcon, SearchIcon, Menu, X } from "lucide-r
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import SubtractWave from "../../public/figmaAssets/Subtract.svg";
-import tophi from "../../public/figmaAssets/image-16.svg";
-import cyanWave from "../../public/figmaAssets/Frame 1948757650.svg";
-import topwaveyellow from "../../public/figmaAssets/Frame 1948757681.svg";
-import brand from "../../public/figmaAssets/rectangle-34625799.svg";
-import wavebrand from "../../public/figmaAssets/wavebrand.svg";
-import waveblue from "../../public/figmaAssets/Vector 25.svg";
-import bottomwaveyellowwhite from "../../public/figmaAssets/bottowavewhite.svg";
-import yellowstar from "../../public/figmaAssets/yellow-2-3.png";
-import yellowstar1 from "../../public/figmaAssets/yellow-2-6.png";
-import splenda from "../../public/figmaAssets/splenda.svg";
-import merch from "../../public/figmaAssets/merch-shop-96-1.svg";
-import logoimg from "../../public/figmaAssets/group-1171275242.svg";
-import find_your from "../../public/figmaAssets/find_your.png";
-import for_every from "../../public/figmaAssets/for_every.png";
-import explore from "../../public/figmaAssets/explore.png";
-import recipes from "../../public/figmaAssets/recipes.png";
-import inst from "../../public/figmaAssets/inst.svg";
-import check from "../../public/figmaAssets/check.svg";
-import avatar from "../../public/figmaAssets/avatar.svg";
-import socials from "../../public/figmaAssets/Socials1.svg";
-import sweet from "../../public/figmaAssets/image-18-1.png";
-import follow from "../../public/figmaAssets/follw.svg";
+import SubtractWave from "../../public/figmaAssets/Subtract.webp";
+import tophi from "../../public/figmaAssets/image-16.webp";
+import cyanWave from "../../public/figmaAssets/Frame 1948757650.webp";
+import topwaveyellow from "../../public/figmaAssets/Frame 1948757681.webp";
+import brand from "../../public/figmaAssets/rectangle-34625799.webp";
+import wavebrand from "../../public/figmaAssets/wavebrand.webp";
+import waveblue from "../../public/figmaAssets/Vector 25.webp";
+import bottomwaveyellowwhite from "../../public/figmaAssets/bottowavewhite.webp";
+import yellowstar from "../../public/figmaAssets/yellow-2-3.webp";
+import yellowstar1 from "../../public/figmaAssets/yellow-2-6.webp";
+import splenda from "../../public/figmaAssets/splenda.webp";
+import merch from "../../public/figmaAssets/merch-shop-96-1.webp";
+import logoimg from "../../public/figmaAssets/group-1171275242.webp";
+import find_your from "../../public/figmaAssets/find_your.webp";
+import for_every from "../../public/figmaAssets/for_every.webp";
+import explore from "../../public/figmaAssets/explore.webp";
+import recipes from "../../public/figmaAssets/recipes.webp";
+import inst from "../../public/figmaAssets/inst.webp";
+import check from "../../public/figmaAssets/check.webp";
+import avatar from "../../public/figmaAssets/avatar.webp";
+import socials from "../../public/figmaAssets/Socials1.webp";
+import sweet from "../../public/figmaAssets/image-18-1.webp";
+import follow from "../../public/figmaAssets/follw.webp";
 
 const navigationItems = [
   { label: "Products", hasDropdown: true },
@@ -47,17 +47,17 @@ const categoryTabs = [
 
 const productImages = [
   {
-    src: "/figmaAssets/rectangle-8633.png",
+    src: "/figmaAssets/rectangle-8633.webp",
     badge: "MAGIC BAKER",
     left: "left-[100px]",
   },
   {
-    src: "/figmaAssets/rectangle-8636.png",
+    src: "/figmaAssets/rectangle-8636.webp",
     badge: "SHAKES",
     left: "left-[520px]",
   },
   {
-    src: "/figmaAssets/rectangle-8635.png",
+    src: "/figmaAssets/rectangle-8635.webp",
     badge: "STEVIA",
     left: "left-[940px]",
   },
@@ -65,19 +65,19 @@ const productImages = [
 
 const recipeCards = [
   {
-    image: "/figmaAssets/rectangle-8659.png",
+    image: "/figmaAssets/rectangle-8659.webp",
     badge: "MADE WITH SPLENDA® ORIGINAL SWEETENER",
     title: "Blueberry Croissant Breakfast Casserole",
     left: "left-[100px]",
   },
   {
-    image: "/figmaAssets/rectangle-8661.png",
+    image: "/figmaAssets/rectangle-8661.webp",
     badge: "MADE WITH SPLENDA® STEVIA SWEETENER",
     title: "No-Bake Protein Balls",
     left: "left-[520px]",
   },
   {
-    image: "/figmaAssets/rectangle-8660.png",
+    image: "/figmaAssets/rectangle-8660.webp",
     badge: "MADE WITH SPLENDA® DIABETIC NUTRITION SHAKES",
     title: "Chocolate Peanut Butter Banana Smoothie",
     left: "left-[940px]",
@@ -85,50 +85,50 @@ const recipeCards = [
 ];
 
 const instagramImages = [
-  { src: "/figmaAssets/img.png", width: "w-[400px]" },
-  { src: "/figmaAssets/img-1.png", width: "w-[400px]" },
-  { src: "/figmaAssets/img-2.png", width: "w-[400px]" },
+  { src: "/figmaAssets/img.webp", width: "w-[400px]" },
+  { src: "/figmaAssets/img-1.webp", width: "w-[400px]" },
+  { src: "/figmaAssets/img-2.webp", width: "w-[400px]" },
   {
-    src: "/figmaAssets/monica-silva-wpfhdtwqfta-unsplash.png",
+    src: "/figmaAssets/monica-silva-wpfhdtwqfta-unsplash.webp",
     width: "w-[400px]",
   },
-  { src: "/figmaAssets/img-3.png", width: "w-[400px]" },
+  { src: "/figmaAssets/img-3.webp", width: "w-[400px]" },
 ];
 
 const merchProducts = [
   {
     title: "Splenda ECR Limited Edition Replica Pit Crew Shirt, Men's Large",
     price: "$75.00",
-    image: "/figmaAssets/ellipse 935.svg",
+    image: "/figmaAssets/ellipse 935.webp",
   },
   {
     title: "Splenda ECR Limited Edition Die-Cast Model Car - 1:18 Scale",
     price: "$79.00",
-    image: "/figmaAssets/ellipse-936.svg",
+    image: "/figmaAssets/ellipse-936.webp",
   },
   {
     title: "ECR Limited Edition Racing Hat - Blue",
     price: "$39.99",
-    image: "/figmaAssets/ellipse-937.svg",
+    image: "/figmaAssets/ellipse-937.webp",
   },
 ];
 
 const socialIcons = [
-  { src: "/figmaAssets/group.png", width: "w-[29px]", height: "h-[29px]" },
-  { src: "/figmaAssets/frame-1.svg", width: "w-[34px]", height: "h-[34px]" },
-  { src: "/figmaAssets/group-1.png", width: "w-[35px]", height: "h-[25px]" },
-  { src: "/figmaAssets/frame-2.svg", width: "w-[34px]", height: "h-[34px]" },
-  { src: "/figmaAssets/frame.svg", width: "w-[34px]", height: "h-[34px]" },
-  { src: "/figmaAssets/group-2.png", width: "w-[31px]", height: "h-[35px]" },
+  { src: "/figmaAssets/group.webp", width: "w-[29px]", height: "h-[29px]" },
+  { src: "/figmaAssets/frame-1.webp", width: "w-[34px]", height: "h-[34px]" },
+  { src: "/figmaAssets/group-1.webp", width: "w-[35px]", height: "h-[25px]" },
+  { src: "/figmaAssets/frame-2.webp", width: "w-[34px]", height: "h-[34px]" },
+  { src: "/figmaAssets/frame.webp", width: "w-[34px]", height: "h-[34px]" },
+  { src: "/figmaAssets/group-2.webp", width: "w-[31px]", height: "h-[35px]" },
 ];
 
 const footerSocialIcons = [
-  { src: "/figmaAssets/frame-1.svg", width: "w-[29.5px]", height: "h-[29.5px]" },
-  { src: "/figmaAssets/group-5.svg", width: "w-[25px]", height: "h-[25px]" },
-  { src: "/figmaAssets/frame-4.svg", width: "w-[29px]", height: "h-[29px]" },
-  { src: "/figmaAssets/group-3.png", width: "w-[30px]", height: "h-[21.11px]" },
-  { src: "/figmaAssets/group-4.png", width: "w-[26.32px]", height: "h-[29.95px]" },
-  { src: "/figmaAssets/frame-6.svg", width: "w-[29px]", height: "h-[29px]" },
+  { src: "/figmaAssets/frame-1.webp", width: "w-[29.5px]", height: "h-[29.5px]" },
+  { src: "/figmaAssets/group-5.webp", width: "w-[25px]", height: "h-[25px]" },
+  { src: "/figmaAssets/frame-4.webp", width: "w-[29px]", height: "h-[29px]" },
+  { src: "/figmaAssets/group-3.webp", width: "w-[30px]", height: "h-[21.11px]" },
+  { src: "/figmaAssets/group-4.webp", width: "w-[26.32px]", height: "h-[29.95px]" },
+  { src: "/figmaAssets/frame-6.webp", width: "w-[29px]", height: "h-[29px]" },
 ];
 
 const productMenu = [
@@ -445,7 +445,7 @@ export const Homepage = () => {
 
           {/* Hero Background */}
           <img
-            src="/figmaAssets/heroimg.svg" 
+            src="/figmaAssets/heroimg.webp"
             alt="Hero background"
             className="hero_img absolute left-0 right-0 top-0 bottom-0 w-full h-full min-w-full min-h-full max-w-none object-cover object-center "
             loading="eager"
@@ -610,6 +610,9 @@ export const Homepage = () => {
 
 
 @media (max-width: 380px) {
+            .star_img {
+        top: 19rem !important;
+    }
             .cyanWave{
             position: absolute !important;
             top: 4rem !important;
@@ -734,7 +737,7 @@ export const Homepage = () => {
       rotate-[15deg]
       z-10
     "
-                src="/figmaAssets/cyan-2--1--1.png"
+                src="/figmaAssets/cyan-2--1--1.webp"
                 alt="star"
               />
 
@@ -772,7 +775,7 @@ export const Homepage = () => {
     sm:mb-0
     quiz-main-img
   "
-                src="/figmaAssets/updated-product-quiz-image-1.png"
+                src="/figmaAssets/updated-product-quiz-image-1.webp"
                 alt=""
               />
 
@@ -793,7 +796,7 @@ export const Homepage = () => {
       bottom-[-90px]  /* 📱 move up on phone */
       left-[450px]
     "
-                src="/figmaAssets/cyan-2--1--1.png"
+                src="/figmaAssets/cyan-2--1--1.webp"
                 alt="star"
               />
 
@@ -856,7 +859,7 @@ export const Homepage = () => {
             />
             <img
               className="hidden star_hide"
-              src="/figmaAssets/cyan-2--1--1.png"
+              src="/figmaAssets/cyan-2--1--1.webp"
               alt="star"
             />
           </div>
@@ -877,7 +880,7 @@ export const Homepage = () => {
                 </p>
                 <img
                   className="star_img absolute -left-3 -top-4 w-[55px] h-[60px] rotate-[12deg] max-[500px]:top-[2rem]"
-                  src="/figmaAssets/cyan-2--1--1.png"
+                  src="/figmaAssets/cyan-2--1--1.webp"
                   alt=""
                 />
               </div>
@@ -1003,7 +1006,7 @@ export const Homepage = () => {
 
               <img
                 className="absolute pointer-events-none top-[17%] left-[4%] -right-34 mb-[90px] w-[80px] h-[90px] sm:w-[100px] sm:h-[114px] lg:w-[130px] lg:h-[144px] scale-100 lg:scale-90 min-[1100px]:scale-75 xl:scale-100 z-10 hidden md:block"
-                src="/figmaAssets/cyan-2--1--1.png"
+                src="/figmaAssets/cyan-2--1--1.webp"
                 alt=""
               />
               <div className="
@@ -1104,7 +1107,7 @@ export const Homepage = () => {
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <div className="flex justify-center items-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6">
               <img src={explore} alt="img" className="h-8 sm:h-10 lg:h-auto w-auto" />
-              <img src={recipes} alt="recipes.png" className="h-8 sm:h-10 lg:h-auto w-auto" />
+              <img src={recipes} alt="recipes.webp" className="h-8 sm:h-10 lg:h-auto w-auto" />
             </div>
             {/* <h2 className="text-brand-color3 font-bold text-5xl lg:text-4xl min-[1100px]:text-3xl xl:text-5xl leading-tight mb-4 sm:mb-6">
               Explore Recipes
@@ -1275,7 +1278,7 @@ export const Homepage = () => {
 
                 {/* Star */}
                 <img
-                  src="/figmaAssets/cyan-2--1--1.png"
+                  src="/figmaAssets/cyan-2--1--1.webp"
                   alt="star"
                   className="
           absolute
@@ -1522,7 +1525,7 @@ export const Homepage = () => {
                   </svg>
                 </div>
                 <img
-                  src="/figmaAssets/cyan-2--1--1.png"
+                  src="/figmaAssets/cyan-2--1--1.webp"
                   alt=""
                   className="sm:hidden absolute -right-8 -top-7 w-10 h-10 opacity-80 blur-[0.5px] pointer-events-none"
                 />
@@ -1597,7 +1600,7 @@ export const Homepage = () => {
                   alt="splenda"
                   className="
     mt-[43px]          /* 📱 mobile top margin */
-    ml-[-33px]         /* 📱 mobile left margin */
+    ml-[15px]         /* 📱 mobile left margin */
     w-[280px]          /* 📱 mobile width */
     h-[3rem]           /* 📱 mobile height */
 
@@ -1826,7 +1829,7 @@ export const Homepage = () => {
             <div className="hidden lg:flex absolute right-[23%] top-[-18%] rotate-[18deg] flex-col items-end gap-3">
               <img
                 className=" rotate-[15deg] w-[130px] h-[144px] z-10"
-                src="/figmaAssets/cyan-2--1--1.png"
+                src="/figmaAssets/cyan-2--1--1.webp"
                 alt=""
               />
             </div>
@@ -1877,7 +1880,7 @@ export const Homepage = () => {
                 <div className="absolute top-[-60px] sm:top-[-80px] right-[-20px] sm:right-[-34px] flex gap-1 hidden sm:flex">
                   <img
                     className="rotate-[-25deg] w-[60px] h-[68px] sm:w-[80px] sm:h-[90px] z-10"
-                    src="/figmaAssets/cyan-2--1--1.png"
+                    src="/figmaAssets/cyan-2--1--1.webp"
                     alt=""
                   />
                 </div>
