@@ -22,8 +22,9 @@ import explore from "../../public/figmaAssets/explore.png";
 import recipes from "../../public/figmaAssets/recipes.png";
 import inst from "../../public/figmaAssets/inst.svg";
 import check from "../../public/figmaAssets/check.svg";
-import follow from "../../public/figmaAssets/follw.svg";
+import avatar from "../../public/figmaAssets/avatar.svg";
 import socials from "../../public/figmaAssets/Socials1.svg";
+import inst_icon from "../../public/figmaAssets/inst_icon.png";
 
 const navigationItems = [
   { label: "Products", hasDropdown: true },
@@ -97,7 +98,7 @@ const merchProducts = [
   {
     title: "Splenda ECR Limited Edition Replica Pit Crew Shirt, Men's Large",
     price: "$75.00",
-    image: "/figmaAssets/ellipse-935.svg",
+    image: "/figmaAssets/ellipse 935.svg",
   },
   {
     title: "Splenda ECR Limited Edition Die-Cast Model Car - 1:18 Scale",
@@ -282,8 +283,8 @@ export const Homepage = () => {
                               {/* LEFT CATEGORY */}
                               <div
                                 className={`${activeCategory
-                                    ? "w-1/2 rounded-l-lg border-r border-[#1E3E7C]/15"
-                                    : "w-full rounded-lg"
+                                  ? "w-1/2 rounded-l-lg border-r border-[#1E3E7C]/15"
+                                  : "w-full rounded-lg"
                                   } bg-white`}
                               >
                                 {productMenu.map((category) => {
@@ -295,8 +296,8 @@ export const Homepage = () => {
                                       key={category.label}
                                       onMouseEnter={() => setActiveCategory(category)}
                                       className={`flex w-full items-center justify-between px-5 py-3 text-left text-sm font-medium transition-colors ${isActive
-                                          ? "bg-[#1E3E7C] text-white"
-                                          : "text-[#1E3E7C] hover:bg-[#E6ECF7]"
+                                        ? "bg-[#1E3E7C] text-white"
+                                        : "text-[#1E3E7C] hover:bg-[#E6ECF7]"
                                         }`}
                                     >
                                       <span>{category.label}</span>
@@ -489,12 +490,66 @@ export const Homepage = () => {
       bottom: -44px !important;
     }
   }
+
+  /* Force mobile-only absolute positioning for the quiz main image */
+  @media (max-width: 646px) {
+    .quiz-main-img {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translate(-50%, 50px);
+      width: 260px;
+      border-radius: 28px;
+      padding: 0; 
+      
+      z-index: 10;
+    }
+      .star_top{
+      top: 200px !important;} 
+    .quiz-img-shell {
+      position: relative;
+      height: 360px;
+      width: 100%;
+      z-index: 10;
+    }
+      .star_img{
+      top: 4rem !important;
+      }
+      .find_your{
+      padding: 0;
+      margin: 0;
+      height: 134px;
+      width: 100%;
+      }
+      .Quiz{
+      padding: 0 10px;
+      // margin: 0;
+      }
+  }
+
+  @media (max-width: 461px) {
+    .quiz-main-img {
+      top: -20px;
+    }
+    .star_top{
+      top: 230px !important;}
+  }
+       .Quiz{
+      padding: 0 10px;
+      // margin: 0;
+      }
+
+       @media (max-width: 381px) {
+     .star_top{
+      top: 250px !important;}
+  }
+      }
   
 `}
         </style>
         {/* Quiz Section */}
         <section
-          className="
+          className=" Quiz
     relative
     px-4 sm:px-6 lg:px-[100px]
      sm:pt-[6rem] lg:pt-[0rem]
@@ -509,7 +564,7 @@ export const Homepage = () => {
         >
 
           {/* IMAGE SIDE */}
-          <div className="
+          <div className=" star_top
     relative
     w-full
     max-w-[624px]
@@ -521,14 +576,23 @@ export const Homepage = () => {
 
             {/* ⭐ TOP STAR — NOW VISIBLE ON PHONE */}
 
-            <div className="relative inline-block">
+            <div
+              className="
+                relative
+                inline-block
+                max-[646px]:w-full
+                max-[646px]:h-[360px]
+                max-[646px]:pt-10
+                max-[646px]:pb-8
+                quiz-img-shell
+              "
+            >
 
               {/* ⭐ TOP STAR */}
               <img
                 className="
       absolute
       -top-12
-      
       w-[70px]
       h-[75px]
       sm:w-[100px]
@@ -542,19 +606,37 @@ export const Homepage = () => {
                 alt="star"
               />
 
+              {/* Yellow ellipse for mobile */}
+              <div
+                className="
+                  hidden
+                  max-[646px]:block
+                  absolute
+                  left-1/2
+                  -translate-x-1/2
+                  top-[38px]
+                  w-[300px]
+                  h-[220px]
+                  rounded-[140px]
+                  bg-[#F9DC5C]
+                  z-0
+                  shadow-[0_20px_45px_rgba(251,223,82,0.45)]
+                "
+                aria-hidden="true"
+              />
+
               {/* MAIN IMAGE */}
               <img
                 className="
-    
 
-          /* 📱 pull image down to overlap yellow */
-    sm:mb-0           /* reset for tablet+ */
-
+    relative
     w-full
     h-auto
     rounded-[20px]
     sm:rounded-[25px]
     lg:rounded-[30px]
+    sm:mb-0
+    quiz-main-img
   "
                 src="/figmaAssets/updated-product-quiz-image-1.png"
                 alt=""
@@ -587,35 +669,39 @@ export const Homepage = () => {
           {/* TEXT SIDE */}
           <div className="max-w-[500px] text-center lg:text-left">
 
-            <h2 className="mb-4 sm:mb-6 flex justify-center lg:justify-start">
+            <h2 className=" find_your mb-4 sm:mb-6 flex justify-center lg:justify-start max-[537px]:w-[120%]  max-[537px]:h-[264px]">
               <img
                 src={find_your}
                 alt="find_your"
-                className="w-[200px] sm:w-[280px] lg:w-auto h-auto"
+                className="w-[200px] sm:w-[280px] lg:w-auto h-auto max-[646px]:w-[260px]"
               />
             </h2>
 
-            <p className="text-brand-color3 text-base sm:text-lg lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
+            <p className="text-brand-color3 text-sm leading-tight sm:text-lg sm:leading-normal lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
               Take a short quiz to find out which Splenda products are right for you.
             </p>
 
             {/* ✅ Reduced button width on phone only */}
             <Button
               className="
-        w-[160px]          /* 📱 smaller width */
-        sm:w-[162px]
-        lg:w-[200px]
-        h-[50px]
-        lg:h-[60px]
-        bg-brand-color3
-        rounded-full
-        border border-black
-        shadow-[2px_2px_0px_#000]
-        text-white
-        text-base
-        lg:text-lg
-        font-bold
-      "
+    w-[140px]              /* 📱 smaller width */
+    sm:w-[162px]
+    lg:w-[200px]
+    h-[42px]               /* 📱 smaller height */
+    sm:h-[50px]
+    lg:h-[60px]
+    px-4                   /* 📱 less horizontal padding */
+    sm:px-5
+    bg-brand-color3
+    rounded-full
+    border border-black
+    shadow-[2px_2px_0px_#000]
+    text-white
+    text-sm                /* 📱 smaller font */
+    sm:text-base
+    lg:text-lg
+    font-bold
+  "
             >
               TAKE QUIZ
             </Button>
@@ -651,7 +737,7 @@ export const Homepage = () => {
                   The only low calorie sweetener made in the USA
                 </p>
                 <img
-                  className="absolute -left-3 -top-4 w-[55px] h-[60px] rotate-[12deg] max-[500px]:top-[2rem]"
+                  className="star_img absolute -left-3 -top-4 w-[55px] h-[60px] rotate-[12deg] max-[500px]:top-[2rem]"
                   src="/figmaAssets/cyan-2--1--1.png"
                   alt=""
                 />
@@ -865,7 +951,7 @@ export const Homepage = () => {
                   {[...recipeCards, ...recipeCards].map((recipe, index) => (
                     <div
                       key={`mobile-recipe-${index}`}
-                      className="shrink-0 w-[78vw] max-w-[300px] rounded-[24px] border border-[#0C3C60] bg-white shadow-[0_8px_0px_rgba(12,60,96,0.2)] overflow-hidden"
+                      className="shrink-0 w-[78vw] max-w-[300px] rounded-[24px] border border-[#0C3C60] bg-white  overflow-hidden"
                     >
                       <div className="relative">
                         <img src={recipe.image} alt={recipe.title} className="w-full h-[240px] object-cover" />
@@ -969,8 +1055,7 @@ export const Homepage = () => {
 
 
           {/* Yellow Wave Transition to Instagram Section */}
-          {/* Yellow Wave Transition to Instagram Section */}
-          {/* Yellow Wave Transition to Instagram Section */}
+
           <div className="absolute bottom-[-60px] left-0 w-full z-0 pointer-events-none">
 
             <div className="px-4 sm:px-10 lg:px-[80px] mb-6 sm:mb-8 lg:mb-10 relative pointer-events-auto">
@@ -1044,7 +1129,7 @@ export const Homepage = () => {
 
         {/* Instagram Section */}
 
-        {/* Instagram Section */}
+
 
         <section
           className="
@@ -1119,8 +1204,8 @@ export const Homepage = () => {
             "
                   >
                     <div className="flex items-center gap-[10px]">
-                      <div className="w-8 h-8 rounded-full bg-[linear-gradient(135deg,#f09433_0%,#e6683c_25%,#dc2743_50%,#cc2366_75%,#bc1888_100%)] flex items-center justify-center">
-                        <span className="text-white text-[10px] font-bold">S</span>
+                      <div className="w-8 h-8 rounded-full bg-white border flex items-center justify-center">
+                        <img src={avatar} alt="" />
                       </div>
                       <span className="text-[#262626] text-[14px] font-semibold">
                         Splenda
@@ -1164,15 +1249,15 @@ export const Homepage = () => {
               rounded-b-[16px]
             "
                   >
-                    <div className="flex gap-4">
+                    <div className="flex gap-3">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="#ed4956">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                       </svg>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#262626" strokeWidth="2">
-                        <circle cx="12" cy="12" r="9" />
-                      </svg>
+                      <svg id="Layer_1" width="16" height="22" fill="#262626"  stroke="#262626" strokeWidth="1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.97 122.88"><title>instagram-comment</title><path d="M61.44,0a61.46,61.46,0,0,1,54.91,89l6.44,25.74a5.83,5.83,0,0,1-7.25,7L91.62,115A61.43,61.43,0,1,1,61.44,0ZM96.63,26.25a49.78,49.78,0,1,0-9,77.52A5.83,5.83,0,0,1,92.4,103L109,107.77l-4.5-18a5.86,5.86,0,0,1,.51-4.34,49.06,49.06,0,0,0,4.62-11.58,50,50,0,0,0-13-47.62Z"/></svg>
+                    <svg id="Layer_1" data-name="Layer 1" width="16" height="22" fill="#262626"  stroke="#262626" strokeWidth="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.3"><title>instagram-share</title><path d="M96.14,12.47l-76.71-1.1,28.3,27.85L96.14,12.47ZM53.27,49l9.88,39.17L102.1,22,53.27,49ZM117,1.6a5.59,5.59,0,0,1,4.9,8.75L66.06,105.21a5.6,5.6,0,0,1-10.44-1.15L41.74,49,1.67,9.57A5.59,5.59,0,0,1,5.65,0L117,1.6Z"/></svg>
+
                     </div>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#262626" strokeWidth="2">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#262626" strokeWidth="2">
                       <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
                     </svg>
                   </div>
@@ -1298,22 +1383,23 @@ export const Homepage = () => {
 
                   {/* Oval Image */}
                   <div className="shrink-0 flex justify-center items-center">
-                    <div className="
-            w-[190px]
-            h-[150px]
-            rounded-[999px]
-            bg-white
-            shadow-[0_18px_45px_rgba(0,0,0,0.22)]
-            flex
-            items-center
-            justify-center
-          ">
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="max-w-[150px] max-h-[120px] object-contain"
-                      />
-                    </div>
+   <div className="
+  w-[190px]
+  h-[150px]
+  bg-white
+  rounded-[50%]
+  rotate-[-10deg]
+  shadow-[0_18px_45px_rgba(0,0,0,0.22)]
+  flex
+  items-center
+  justify-center
+">
+  <img
+    src={product.image}
+    alt={product.title}
+    className="max-w-[170px] max-h-[135px] object-contain"
+  />
+</div>
                   </div>
 
                   {/* Text Content - CENTERED */}
@@ -1328,11 +1414,11 @@ export const Homepage = () => {
 
                     {/* Title */}
                     <p className="
-            text-white
+          
             text-[16px]
             font-bold
             leading-snug
-            max-w-[190px]
+            max-w-[190px] text-[#F4D548]
           ">
                       {product.title}
                     </p>
@@ -1376,20 +1462,31 @@ export const Homepage = () => {
 
           </div>
 
-          <div className="hidden sm:gap-[0.5rem] sm:grid px-4 sm:px-6 lg:px-[100px] pt-6 sm:pt-8 lg:pt-[40px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
+          <div className="hidden sm:gap-[0.5rem] sm:grid px-4 sm:px-4 lg:px-[100px] pt-6 sm:pt-6 lg:pt-[40px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-10 sm:gap-8 lg:gap-6 min-[1100px]:max-[1279px]:gap-4 lg:max-[1279px]:gap-4 xl:gap-16 relative z-20">
             {merchProducts.map((product, index) => (
               <div
                 key={index}
                 className="flex flex-col items-center text-center w-full"
               >
                 {/* Oval Container */}
-                <div className="w-[260px] h-[180px] sm:w-[300px] sm:h-[200px] lg:w-[280px] lg:h-[190px] min-[1100px]:max-[1279px]:w-[260px] min-[1100px]:max-[1279px]:h-[178px] lg:max-[1279px]:w-[260px] lg:max-[1279px]:h-[178px] xl:w-[370px] xl:h-[250px] bg-white rounded-[250%] rotate-[-5deg] flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 shadow-lg">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="max-w-[160px] max-h-[130px] sm:max-w-[190px] sm:max-h-[150px] lg:max-w-[180px] lg:max-h-[145px] min-[1100px]:max-[1279px]:max-w-[160px] min-[1100px]:max-[1279px]:max-h-[130px] lg:max-[1279px]:max-w-[160px] lg:max-[1279px]:max-h-[130px] xl:max-w-[230px] xl:max-h-[190px] object-contain rotate-[5deg]"
-                  />
-                </div>
+               <div className="w-[220px] h-[150px] sm:w-[250px] sm:h-[100px] lg:w-[280px] lg:h-[190px] min-[1100px]:max-[1279px]:w-[260px] min-[1100px]:max-[1279px]:h-[178px] lg:max-[1279px]:w-[260px] lg:max-[1279px]:h-[178px] xl:w-[370px] xl:h-[250px] bg-white rounded-[250%] rotate-[-5deg] flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 shadow-lg">
+  <img
+  src={product.image}
+  alt={product.title}
+  className="
+    max-w-[210px] max-h-[170px]   /* 🔥 bigger mobile */
+    sm:max-w-[210px] sm:max-h-[165px]
+    lg:max-w-[200px] lg:max-h-[165px]
+    min-[1100px]:max-[1279px]:max-w-[180px]
+    min-[1100px]:max-[1279px]:max-h-[150px]
+    lg:max-[1279px]:max-w-[180px]
+    lg:max-[1279px]:max-h-[150px]
+    xl:max-w-[250px] xl:max-h-[210px]
+    object-contain
+    rotate-[5deg]
+  "
+/>
+</div>
 
                 {/* Title */}
                 <p className="text-[#F4D548] text-sm sm:text-[15px] lg:text-[15px] min-[1100px]:max-[1279px]:text-[14px] lg:max-[1279px]:text-[14px] xl:text-[16px] font-semibold italic mb-2 sm:mb-3 max-w-[200px] sm:max-w-[220px] lg:max-w-[210px] min-[1100px]:max-[1279px]:max-w-[200px] lg:max-[1279px]:max-w-[200px] xl:max-w-[240px] leading-snug">
@@ -1423,7 +1520,7 @@ export const Homepage = () => {
           </div>
 
           {/* White Wave Bottom */}
-          <div className="absolute bottom-[-9%] w-full h-[260px] overflow-hidden">
+          <div className="absolute bottom-[-7%] w-full h-[260px] overflow-hidden">
             <img
               src={SubtractWave}
               alt="Wave Divider"
