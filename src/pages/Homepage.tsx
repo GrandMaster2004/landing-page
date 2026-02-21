@@ -24,7 +24,8 @@ import inst from "../../public/figmaAssets/inst.svg";
 import check from "../../public/figmaAssets/check.svg";
 import avatar from "../../public/figmaAssets/avatar.svg";
 import socials from "../../public/figmaAssets/Socials1.svg";
-import inst_icon from "../../public/figmaAssets/inst_icon.png";
+// import inst_icon from "../../public/figmaAssets/inst_icon.png";
+import follow from "../../public/figmaAssets/follw.svg";
 
 const navigationItems = [
   { label: "Products", hasDropdown: true },
@@ -36,12 +37,12 @@ const navigationItems = [
 type NavigationItem = (typeof navigationItems)[number];
 
 const categoryTabs = [
-  { label: "HOT BEV", active: true },
-  { label: "COLD BEV", active: false },
-  { label: "BAKING", active: false },
-  { label: "COOKING", active: false },
-  { label: "TOPPING", active: false },
-  { label: "FLAVORING", active: false },
+  "HOT BEV",
+  "COLD BEV",
+  "BAKING",
+  "COOKING",
+  "TOPPING",
+  "FLAVORING",
 ];
 
 const productImages = [
@@ -158,7 +159,7 @@ export const Homepage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(null);
   const [mobileProductCategoryOpen, setMobileProductCategoryOpen] = useState<string | null>(null);
-
+  const [activeTab, setActiveTab] = useState("HOT BEV");
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen((prev) => {
       if (prev) {
@@ -463,11 +464,21 @@ export const Homepage = () => {
       </div>
 
       {/* 🔹 Cyan Wave (FULL WIDTH – SAME POSITION) */}
+      {/* 🔹 Cyan Wave */}
+          <style>
+{`
+  @media (min-width: 1600px) {
+    .cyanWave {
+      margin-top: -310px !important; /* 🔥 change value if needed */
+    }
+  }
+`}
+</style>
       <div className="relative w-full pointer-events-none z-10">
         <img
           src={cyanWave}
           alt="Cyan Wave"
-          className="
+          className=" cyanWave
       w-full
       block
       object-cover
@@ -475,7 +486,8 @@ export const Homepage = () => {
       -mt-[80px]       /* 📱 mobile */
       sm:-mt-[100px]   /* 📲 tablet */
       lg:-mt-[160px]   /* 💻 desktop */
-    "
+      
+    " 
         />
       </div>
       {/* Main Content Container - Flowing smoothly */}
@@ -559,6 +571,7 @@ export const Homepage = () => {
     items-center
     gap-8 sm:gap-12 lg:gap-24
     bg-white
+    flex justify-center
   "
           data-testid="section-quiz"
         >
@@ -744,15 +757,33 @@ export const Homepage = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                {categoryTabs.map((tab) => (
+                {categoryTabs.map((label) => (
                   <button
-                    key={tab.label}
-                    className={`rounded-full border-[2px] border-[#0C3C60] py-3 text-sm font-bold tracking-wide transition-all ${tab.active
-                      ? "bg-[#EBFAFF] text-[#0C3C60] "
-                      : "bg-white text-[#0C3C60]/80"
-                      }`}
+                    key={label}
+                    type="button"
+                    onMouseEnter={() => setActiveTab(label)}   // 🔥 hover activation
+                    onClick={() => setActiveTab(label)}       // 🔥 mobile activation
+                    className={`
+        rounded-full
+        border-2 border-[#0C3C60]
+        px-6 py-3
+        text-sm font-bold tracking-wide
+        transition-all duration-200
+        text-[#0C3C60]
+
+        shadow-[4px_4px_0px_#0C3C60]
+
+        ${activeTab === label
+                        ? "bg-[#D6F3FF] shadow-[8px_8px_0px_#0C3C60]"
+                        : "bg-transparent hover:bg-[#D6F3FF] hover:-translate-y-[3px] hover:shadow-[8px_8px_0px_#0C3C60]"
+                      }
+
+        active:translate-x-[3px]
+        active:translate-y-[3px]
+        active:shadow-[2px_2px_0px_#0C3C60]
+      `}
                   >
-                    {tab.label}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -822,18 +853,24 @@ export const Homepage = () => {
                   The only low calorie sweetener made in the USA
                 </p>
               </div>
-
-              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 lg:mb-16 px-4 sm:px-6">
-                {categoryTabs.map((tab, index) => (
+              <div className="mx-auto flex flex-wrap justify-center gap-4 mb-10 lg:mb-16 max-w-[900px] px-4">
+                {categoryTabs.map((label) => (
                   <Button
-                    key={index}
-                    variant={tab.active ? "default" : "outline"}
-                    className={`px-6 py-3 text-base lg:px-4 lg:py-2 lg:text-sm min-[1100px]:px-3 min-[1100px]:py-2 min-[1100px]:text-xs xl:px-6 xl:text-base rounded-full font-bold border-2 border-brand-color3 whitespace-nowrap ${tab.active
-                      ? "bg-[#ebfaff] text-brand-color3 shadow-[2px_2px_0px_#0C3C60]"
-                      : "bg-white text-brand-color3"
-                      }`}
+                    key={label}
+                    onMouseEnter={() => setActiveTab(label)}
+                    onClick={() => setActiveTab(label)}
+                    className={`
+        px-6 py-3 text-base lg:px-4 lg:py-2 lg:text-sm
+        rounded-full font-bold border-2 border-brand-color3 whitespace-nowrap
+        shadow-[2px_2px_0px_#0C3C60]
+        transition-all duration-200
+        ${activeTab === label
+                        ? "bg-[#ebfaff] text-brand-color3"
+                        : "bg-transparent text-brand-color3 "
+                      }
+      `}
                   >
-                    {tab.label}
+                    {label}
                   </Button>
                 ))}
               </div>
@@ -843,12 +880,47 @@ export const Homepage = () => {
                 src="/figmaAssets/cyan-2--1--1.png"
                 alt=""
               />
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-12 sm:gap-8 px-4 sm:px-6 lg:px-[100px] ">
+              <div className="
+  grid 
+  grid-cols-1 
+  sm:grid-cols-2 
+  lg:grid-cols-3 
+  w-full
+  max-w-[1500px]
+  mx-auto
+  justify-items-center
+  items-center
+  gap-12 
+  sm:gap-8 
+  px-4 
+  sm:px-6 
+  lg:px-[100px]
+">
                 {productImages.map((product, index) => (
                   <div key={index} className="relative group cursor-pointer flex flex-col items-center">
                     <img
                       src={product.src}
-                      className="w-[420px] lg:w-[360px] min-[1100px]:w-[320px] xl:w-[420px] max-w-full h-[320px] sm:h-[360px] lg:h-[420px] rounded-[24px] object-cover border-2 border-transparent hover:border-brand-color3 transition-all"
+                      className="
+    w-[420px]
+    lg:w-[360px]
+    min-[1100px]:w-[320px]
+    xl:w-[420px]
+    min-[1712px]:w-[520px]   /* 🔥 wider after 1712px */
+
+    max-w-full
+
+    h-[320px]
+    sm:h-[360px]
+    lg:h-[420px]
+    min-[1712px]:h-[560px]   /* 🔥 taller after 1712px */
+
+    rounded-[24px]
+    object-cover
+    border-2
+    border-transparent
+    hover:border-brand-color3
+    transition-all
+  "
                       alt=""
                     />
                     <div className="mt-6 whitespace-nowrap">
@@ -1128,9 +1200,6 @@ export const Homepage = () => {
         </section>
 
         {/* Instagram Section */}
-
-
-
         <section
           className="
     relative
@@ -1154,14 +1223,16 @@ export const Homepage = () => {
       mt-[12%]
 
       pb-[3rem]        /* ✅ PHONE FIX */
-      sm:pb-[25rem]    /* ✅ tablet + desktop unchanged */
+      sm:pb-[0rem]    /* ✅ tablet + desktop unchanged */
 
       sm:mt-0
       overflow-visible
+
+      
     "
           >
 
-            <div className="instagram-carousel flex gap-6 pl-4 pr-4 animate-[scrollLeft_25s_linear_infinite] overflow-visible">
+            <div className="instagram-carousel flex gap-6 pl-4 pr-4 w-max animate-[scrollLeft_18s_linear_infinite] sm:animate-[scrollLeft_25s_linear_infinite]">
 
               {[...instagramImages, ...instagramImages].map((img, index) => (
 
@@ -1171,7 +1242,7 @@ export const Homepage = () => {
             instagram-card
             relative
             shrink-0
-            [width:clamp(200px,50vw,280px)]
+            [width:clamp(330px,75vw,420px)]
             rounded-[16px]
             overflow-visible
             bg-white
@@ -1221,7 +1292,7 @@ export const Homepage = () => {
                   {/* IMAGE */}
                   <img
                     src={img.src}
-                    className="w-full h-[320px] object-cover block rounded-[16px]"
+                    className="w-full h-[410px] object-cover block rounded-[16px]"
                     alt="Instagram post"
                   />
 
@@ -1253,8 +1324,8 @@ export const Homepage = () => {
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="#ed4956">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                       </svg>
-                      <svg id="Layer_1" width="16" height="22" fill="#262626"  stroke="#262626" strokeWidth="1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.97 122.88"><title>instagram-comment</title><path d="M61.44,0a61.46,61.46,0,0,1,54.91,89l6.44,25.74a5.83,5.83,0,0,1-7.25,7L91.62,115A61.43,61.43,0,1,1,61.44,0ZM96.63,26.25a49.78,49.78,0,1,0-9,77.52A5.83,5.83,0,0,1,92.4,103L109,107.77l-4.5-18a5.86,5.86,0,0,1,.51-4.34,49.06,49.06,0,0,0,4.62-11.58,50,50,0,0,0-13-47.62Z"/></svg>
-                    <svg id="Layer_1" data-name="Layer 1" width="16" height="22" fill="#262626"  stroke="#262626" strokeWidth="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.3"><title>instagram-share</title><path d="M96.14,12.47l-76.71-1.1,28.3,27.85L96.14,12.47ZM53.27,49l9.88,39.17L102.1,22,53.27,49ZM117,1.6a5.59,5.59,0,0,1,4.9,8.75L66.06,105.21a5.6,5.6,0,0,1-10.44-1.15L41.74,49,1.67,9.57A5.59,5.59,0,0,1,5.65,0L117,1.6Z"/></svg>
+                      <svg id="Layer_1" width="16" height="22" fill="#262626" stroke="#262626" strokeWidth="1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.97 122.88"><title>instagram-comment</title><path d="M61.44,0a61.46,61.46,0,0,1,54.91,89l6.44,25.74a5.83,5.83,0,0,1-7.25,7L91.62,115A61.43,61.43,0,1,1,61.44,0ZM96.63,26.25a49.78,49.78,0,1,0-9,77.52A5.83,5.83,0,0,1,92.4,103L109,107.77l-4.5-18a5.86,5.86,0,0,1,.51-4.34,49.06,49.06,0,0,0,4.62-11.58,50,50,0,0,0-13-47.62Z" /></svg>
+                      <svg id="Layer_1" data-name="Layer 1" width="16" height="22" fill="#262626" stroke="#262626" strokeWidth="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.3"><title>instagram-share</title><path d="M96.14,12.47l-76.71-1.1,28.3,27.85L96.14,12.47ZM53.27,49l9.88,39.17L102.1,22,53.27,49ZM117,1.6a5.59,5.59,0,0,1,4.9,8.75L66.06,105.21a5.6,5.6,0,0,1-10.44-1.15L41.74,49,1.67,9.57A5.59,5.59,0,0,1,5.65,0L117,1.6Z" /></svg>
 
                     </div>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#262626" strokeWidth="2">
@@ -1269,11 +1340,80 @@ export const Homepage = () => {
             </div>
 
           </div>
+
+
+          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-center lg:justify-around gap-8 lg:gap-0 pt-12 sm:pt-16 lg:pt-[90px] px-4 max-[1200px]:pb-6 sm:px-6 pb-40 sm:pb-60  relative z-5">
+            {/* @SPLENDA Button */}
+            <button className="flex items-center gap-2 bg-[#0C3C60] text-white py-3 px-6 sm:py-3.5 sm:px-7 rounded-full text-sm sm:text-base font-bold cursor-pointer border-none lg:ml-[39%]">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect width="24" height="24" rx="6" fill="url(#instagram-gradient)" />
+                <circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" fill="none" />
+                <circle cx="18" cy="6" r="1.5" fill="white" />
+                <defs>
+                  <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#f09433" />
+                    <stop offset="25%" stopColor="#e6683c" />
+                    <stop offset="50%" stopColor="#dc2743" />
+                    <stop offset="75%" stopColor="#cc2366" />
+                    <stop offset="100%" stopColor="#bc1888" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              @SPLENDA
+            </button>
+
+            {/* Follow Our Socials */}
+            <div className="text-center lg:text-right">
+              <span className="flex justify-center lg:justify-end gap-2 mb-3">
+                <img src={follow} alt="follow" className="h-5 sm:h-6 lg:h-auto" /><img src={socials} alt="socials" className="h-5 sm:h-6 lg:h-auto" />
+              </span>
+              <div className="flex gap-2 sm:gap-3 justify-center lg:justify-end">
+                {/* Instagram */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="white">
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="2" fill="none" />
+                    <circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" fill="none" />
+                    <circle cx="18" cy="6" r="1" fill="white" />
+                  </svg>
+                </div>
+                {/* Facebook */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
+                  <svg className="w-2.5 h-4 sm:w-[10px] sm:h-[18px]" viewBox="0 0 10 18" fill="white">
+                    <path d="M6.5 6V4c0-.55.45-1 1-1H9V0H6.5C4.57 0 3 1.57 3 3.5V6H0v3h3v9h3.5V9H9l.5-3H6.5z" />
+                  </svg>
+                </div>
+                {/* YouTube */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-3 sm:w-5 sm:h-3.5" viewBox="0 0 20 14" fill="white">
+                    <path d="M19.15 2.16A2.5 2.5 0 0 0 17.39.4C15.87 0 10 0 10 0S4.13 0 2.61.4A2.5 2.5 0 0 0 .85 2.16 26 26 0 0 0 .45 7a26 26 0 0 0 .4 4.84 2.5 2.5 0 0 0 1.76 1.76C4.13 14 10 14 10 14s5.87 0 7.39-.4a2.5 2.5 0 0 0 1.76-1.76A26 26 0 0 0 19.55 7a26 26 0 0 0-.4-4.84zM8 10V4l5.2 3L8 10z" />
+                  </svg>
+                </div>
+                {/* LinkedIn */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="white">
+                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                  </svg>
+                </div>
+                {/* Pinterest */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="white">
+                    <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z" />
+                  </svg>
+                </div>
+                {/* TikTok */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0C3C60] flex items-center justify-center cursor-pointer">
+                  <svg className="w-3.5 h-4" viewBox="0 0 14 16" fill="white">
+                    <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0z" transform="translate(-1)" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
           <style>{`
-  @keyframes scrollLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+ @keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
   .instagram-carousel-container:hover .instagram-carousel {
     animation-play-state: paused;
@@ -1383,7 +1523,7 @@ export const Homepage = () => {
 
                   {/* Oval Image */}
                   <div className="shrink-0 flex justify-center items-center">
-   <div className="
+                    <div className="
   w-[190px]
   h-[150px]
   bg-white
@@ -1394,12 +1534,12 @@ export const Homepage = () => {
   items-center
   justify-center
 ">
-  <img
-    src={product.image}
-    alt={product.title}
-    className="max-w-[170px] max-h-[135px] object-contain"
-  />
-</div>
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="max-w-[170px] max-h-[135px] object-contain"
+                      />
+                    </div>
                   </div>
 
                   {/* Text Content - CENTERED */}
@@ -1469,11 +1609,11 @@ export const Homepage = () => {
                 className="flex flex-col items-center text-center w-full"
               >
                 {/* Oval Container */}
-               <div className="w-[220px] h-[150px] sm:w-[250px] sm:h-[100px] lg:w-[280px] lg:h-[190px] min-[1100px]:max-[1279px]:w-[260px] min-[1100px]:max-[1279px]:h-[178px] lg:max-[1279px]:w-[260px] lg:max-[1279px]:h-[178px] xl:w-[370px] xl:h-[250px] bg-white rounded-[250%] rotate-[-5deg] flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 shadow-lg">
-  <img
-  src={product.image}
-  alt={product.title}
-  className="
+                <div className="w-[220px] h-[150px] sm:w-[250px] sm:h-[100px] lg:w-[280px] lg:h-[190px] min-[1100px]:max-[1279px]:w-[260px] min-[1100px]:max-[1279px]:h-[178px] lg:max-[1279px]:w-[260px] lg:max-[1279px]:h-[178px] xl:w-[370px] xl:h-[250px] bg-white rounded-[250%] rotate-[-5deg] flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 shadow-lg">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="
     max-w-[210px] max-h-[170px]   /* 🔥 bigger mobile */
     sm:max-w-[210px] sm:max-h-[165px]
     lg:max-w-[200px] lg:max-h-[165px]
@@ -1485,8 +1625,8 @@ export const Homepage = () => {
     object-contain
     rotate-[5deg]
   "
-/>
-</div>
+                  />
+                </div>
 
                 {/* Title */}
                 <p className="text-[#F4D548] text-sm sm:text-[15px] lg:text-[15px] min-[1100px]:max-[1279px]:text-[14px] lg:max-[1279px]:text-[14px] xl:text-[16px] font-semibold italic mb-2 sm:mb-3 max-w-[200px] sm:max-w-[220px] lg:max-w-[210px] min-[1100px]:max-[1279px]:max-w-[200px] lg:max-[1279px]:max-w-[200px] xl:max-w-[240px] leading-snug">
@@ -1592,9 +1732,22 @@ export const Homepage = () => {
             <div className="w-full lg:w-[420px] lg:shrink-0">
               {/* I USE Splenda DO YOU? Header */}
               <h2 className="mb-4 sm:mb-6 text-center lg:text-left">
-                <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px] font-['Luckiest_Guy',cursive]">I USE </span>
+                {/* <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px] font-['Luckiest_Guy',cursive]">I USE </span>
                 <span className="text-brand-color2 text-2xl sm:text-[28px] lg:text-[32px] font-['Pacifico',cursive]">Splenda </span>
-                <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px] font-['Luckiest_Guy',cursive]">DO YOU?</span>
+                <span className="text-brand-color3 text-xl sm:text-2xl lg:text-[28px] font-['Luckiest_Guy',cursive]">DO YOU?</span> */}
+                <img
+                  src={logoimg}
+                  alt="logo"
+                  className="
+          w-[180px]
+          md:w-[220px]
+          lg:w-[260px]
+          xl:w-[320px]
+          2xl:w-[380px]
+          h-auto
+          object-contain
+        "
+                />
               </h2>
 
               {/* Sweet Dish Card */}
@@ -1754,7 +1907,7 @@ export const Homepage = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   );
 };
 
