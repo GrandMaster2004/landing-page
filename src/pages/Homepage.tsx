@@ -199,7 +199,7 @@ export const Homepage = () => {
         {/* ✅ Navbar - Sticks to Top Without Overlap */}
         <header className="sticky top-0 left-0 w-full min-h-[60px] lg:h-[70px] flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between px-4 sm:px-6 lg:px-[60px] bg-white z-50 shadow-sm py-4 lg:py-0">
 
-          {/* Mobile Branding + Search */}
+          {/* ================= MOBILE ================= */}
           <div className="flex w-full flex-col gap-3 lg:hidden">
             <div className="flex items-center justify-between">
               <p className="text-[#1EA4C9] text-lg font-['Luckiest_Guy',cursive]">
@@ -207,190 +207,231 @@ export const Homepage = () => {
                 <span className="text-brand-color2 font-['Pacifico',cursive]">Splenda</span>
                 <span className="ml-1">DO YOU?</span>
               </p>
+
               <button
                 className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-brand-color3 text-white shadow-[2px_2px_0px_#0C3C60]"
                 onClick={handleMobileMenuToggle}
-                aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
+
             <div className="relative h-[48px]">
               <Input
                 placeholder="Looking for something sweet..."
-                className="h-full w-full rounded-full border-[2px] border-[#1E3E7C] bg-white pl-4 pr-12 text-sm text-[#1E3E7C] placeholder:text-[#1E3E7C]/60"
+                className="h-full w-full rounded-full border-[2px] border-[#1E3E7C] bg-white pl-4 pr-12 text-sm text-[#1E3E7C]"
               />
-              <SearchIcon className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#1E3E7C]" strokeWidth={1.6} />
+              <SearchIcon className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#1E3E7C]" />
             </div>
           </div>
 
-          {/* Desktop Layout */}
-          <div className="hidden w-full items-center justify-between lg:flex">
-            <div className="flex items-center gap-[10rem] max-[1100px]:gap-[0rem] ">
-              <div className="flex items-baseline gap-1">
-                <img
-                  src={logoimg}
-                  alt="logoimg"
-                  className="h-6 w-[160px] lg:w-[230px] min-[1100px]:w-[115px] xl:w-[230px] object-contain"
-                />
-              </div>
+          {/* ================= DESKTOP (UNCHANGED) ================= */}
+          {/* ================= DESKTOP ================= */}
+          <div className="hidden w-full items-center lg:flex">
 
-              {/* Navigation - Desktop */}
-              <nav className="flex gap-8 lg:gap-5 min-[1100px]:gap-4 xl:gap-8 items-center">
-                {navigationItems.map((item, index) => {
+            {/* LOGO (Bigger & Responsive) */}
+            <div className="flex-shrink-0">
+              <img
+                src={logoimg}
+                alt="logo"
+                className="
+          w-[180px]
+          md:w-[220px]
+          lg:w-[260px]
+          xl:w-[320px]
+          2xl:w-[380px]
+          h-auto
+          object-contain
+        "
+              />
+            </div>
+
+            {/* RIGHT SIDE (Nav + Search) */}
+            <div className="flex items-center gap-8 ml-auto">
+
+              {/* NAVIGATION */}
+              <nav className="flex items-center gap-6 xl:gap-8">
+                {navigationItems.map((item) => {
+
+                  // ===== PRODUCTS DROPDOWN (FIXED HOVER) =====
                   if (item.label === "Products") {
                     return (
                       <div
                         key={item.label}
                         className="relative"
                         onMouseEnter={() => setProductMenuOpen(true)}
+                        onMouseLeave={() => {
+                          setProductMenuOpen(false);
+                          setActiveCategory(null);
+                        }}
                       >
-                        <button className="text-[#0C3C60] text-base lg:text-sm min-[1100px]:text-xs xl:text-base hover:opacity-80 flex items-center gap-1">
+                        <button className="text-[#0C3C60] text-sm xl:text-base hover:opacity-80 flex items-center gap-1">
                           {item.label}
-                          <ChevronDownIcon className="w-3 h-3" />
+                          <ChevronDownIcon className="w-4 h-4" />
                         </button>
 
                         {productMenuOpen && (
                           <div
-                            className={`absolute left-0 top-full mt-3 rounded-lg bg-white shadow-xl ${activeCategory ? "flex w-[520px]" : "w-[260px]"
+                            className={`absolute left-0 top-full pt-2 rounded-lg ${activeCategory ? "w-[520px]" : "w-[260px]"
                               }`}
-                            onMouseEnter={() => setProductMenuOpen(true)}
-                            onMouseLeave={() => {
-                              setProductMenuOpen(false);
-                              setActiveCategory(null);
-                            }}
                           >
-                            <div className={`${activeCategory ? "w-1/2 rounded-l-lg border-r border-[#1E3E7C]/15" : "w-full rounded-lg"} bg-white`}>
-                              {productMenu.map((category) => {
-                                const isActive = activeCategory?.label === category.label;
-                                return (
-                                  <button
-                                    key={category.label}
-                                    onMouseEnter={() => setActiveCategory(category)}
-                                    className={`flex w-full items-center justify-between px-5 py-3 text-left text-sm font-medium transition-colors ${isActive
-                                      ? "bg-[#1E3E7C] text-white"
-                                      : "text-[#1E3E7C] hover:bg-[#E6ECF7]"
-                                      }`}
-                                  >
-                                    <span>{category.label}</span>
-                                    <ChevronRightIcon className="h-4 w-4" />
-                                  </button>
-                                );
-                              })}
-                            </div>
-                            {activeCategory && (
-                              <div className="w-1/2 rounded-r-lg bg-white py-4 px-6">
-                                {activeCategory.items.map((subItem) => (
-                                  <p
-                                    key={subItem}
-                                    className="py-2 text-sm font-medium text-[#1E3E7C] hover:text-[#0E2A58]"
-                                  >
-                                    {subItem}
-                                  </p>
-                                ))}
+                            {/* 🔥 Invisible hover bridge */}
+                            <div className="absolute -top-2 left-0 w-full h-2 bg-transparent"></div>
+
+                            <div className="bg-white shadow-xl rounded-lg flex">
+                              {/* LEFT CATEGORY */}
+                              <div
+                                className={`${activeCategory
+                                    ? "w-1/2 rounded-l-lg border-r border-[#1E3E7C]/15"
+                                    : "w-full rounded-lg"
+                                  } bg-white`}
+                              >
+                                {productMenu.map((category) => {
+                                  const isActive =
+                                    activeCategory?.label === category.label;
+
+                                  return (
+                                    <button
+                                      key={category.label}
+                                      onMouseEnter={() => setActiveCategory(category)}
+                                      className={`flex w-full items-center justify-between px-5 py-3 text-left text-sm font-medium transition-colors ${isActive
+                                          ? "bg-[#1E3E7C] text-white"
+                                          : "text-[#1E3E7C] hover:bg-[#E6ECF7]"
+                                        }`}
+                                    >
+                                      <span>{category.label}</span>
+                                      <ChevronRightIcon className="h-4 w-4" />
+                                    </button>
+                                  );
+                                })}
                               </div>
-                            )}
+
+                              {/* RIGHT SUBMENU */}
+                              {activeCategory && (
+                                <div className="w-1/2 rounded-r-lg bg-white py-4 px-6">
+                                  {activeCategory.items.map((subItem) => (
+                                    <p
+                                      key={subItem}
+                                      className="py-2 text-sm font-medium text-[#1E3E7C] hover:text-[#0E2A58]"
+                                    >
+                                      {subItem}
+                                    </p>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           </div>
                         )}
                       </div>
                     );
                   }
 
+                  // ===== OTHER NAV ITEMS =====
                   return (
                     <button
                       key={item.label}
-                      className="text-[#0C3C60] text-base lg:text-sm min-[1100px]:text-xs xl:text-base hover:opacity-80 flex items-center gap-1"
+                      className="text-[#0C3C60] text-sm xl:text-base hover:opacity-80 flex items-center gap-1"
                     >
                       {item.label}
-                      {item.hasDropdown && <ChevronDownIcon className="w-3 h-3" />}
+                      {item.hasDropdown && item.label !== "Learn" && (
+                        <ChevronDownIcon className="w-4 h-4" />
+                      )}
                     </button>
                   );
                 })}
               </nav>
-            </div>
 
-            {/* Search - Desktop */}
-            <div className="relative w-[400px] lg:w-[300px] min-[1100px]:w-[250px] xl:w-[400px] h-[32px]">
-              <Input
-                placeholder="Looking for something sweet..."
-                className="absolute inset-0 h-full w-full rounded-full border-[1px] border-[#1E3E7C] bg-[#F2F4F7] shadow-[1px_2px_0px_#1E3E7C] pl-6 pr-8 text-lg  text-[#1E3E7C] placeholder:text-[#1E3E7C]/60 focus-visible:ring-0 focus-visible:border-[#1E3E7C]"
-              />
-              <div className="pointer-events-none absolute right-4 top-1/2 flex -translate-y-1/2 items-center justify-center ">
-                <SearchIcon className="h-5 w-6 text-[#1E3E7C]" strokeWidth={1.5} />
+              {/* SEARCH */}
+              <div className="relative w-[260px] lg:w-[300px] xl:w-[360px] 2xl:w-[420px] h-[38px]">
+                <Input
+                  placeholder="Looking for something sweet..."
+                  className="absolute inset-0 h-full w-full rounded-full border-[1px] border-[#1E3E7C] bg-[#F2F4F7] shadow-[1px_2px_0px_#1E3E7C] pl-6 pr-10 text-sm text-[#1E3E7C] placeholder:text-[#1E3E7C]/60 focus-visible:ring-0 focus-visible:border-[#1E3E7C]"
+                />
+                <SearchIcon className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#1E3E7C]" strokeWidth={1.5} />
               </div>
+
             </div>
           </div>
 
-          {/* Mobile Menu Overlay */}
+          {/* ================= MOBILE MENU ================= */}
           {mobileMenuOpen && (
-            <div className="lg:hidden absolute top-[60px] left-0 w-full bg-white shadow-lg border-t border-gray-100 z-50">
-              {/* Mobile Search */}
-              <div className="p-4 border-b border-gray-100">
-                <div className="relative w-full h-[40px]">
-                  <Input
-                    placeholder="Looking for something sweet..."
-                    className="h-full w-full rounded-full border-[1px] border-[#1E3E7C] bg-[#F2F4F7] shadow-[1px_2px_0px_#1E3E7C] pl-4 pr-10 text-sm text-[#1E3E7C] placeholder:text-[#1E3E7C]/60 focus-visible:ring-0 focus-visible:border-[#1E3E7C]"
-                  />
-                  <div className="pointer-events-none absolute right-3 top-1/2 flex -translate-y-1/2 items-center justify-center">
-                    <SearchIcon className="h-4 w-4 text-[#1E3E7C]" strokeWidth={1.5} />
-                  </div>
-                </div>
-              </div>
-              {/* Mobile Navigation Links */}
-              <nav className="flex flex-col p-4 gap-4">
+            <div className="lg:hidden absolute top-[60px] left-0 w-full bg-white shadow-lg z-50 rounded-b-[28px] overflow-hidden">
+              <nav className="flex flex-col px-6 py-6 gap-6 relative">
+
                 {navigationItems.map((item) => {
                   const isOpen = mobileSubmenuOpen === item.label;
+
                   return (
-                    <div key={item.label} className="flex flex-col gap-3">
+                    <div key={item.label} className="flex flex-col gap-4">
+
                       <button
                         type="button"
-                        className="text-[#0C3C60] text-base font-semibold flex items-center justify-between py-2 border-b border-gray-100"
                         onClick={() => handleMobileNavClick(item)}
-                        aria-expanded={isOpen}
+                        className="text-[#0C3C60] text-[18px] font-semibold flex items-center justify-between"
                       >
-                        <span>{item.label}</span>
-                        {item.hasDropdown && (
+                        {item.label}
+                        {item.hasDropdown && item.label !== "Learn" && (
                           <ChevronDownIcon
-                            className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+                            className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""
+                              }`}
                           />
                         )}
                       </button>
 
+                      {/* PRODUCTS DROPDOWN */}
                       {item.label === "Products" && isOpen && (
-                        <div className="ml-1 rounded-[18px] bg-[#E8F4FF] px-4 py-3 flex flex-col gap-4 shadow-inner">
-                          {productMenu.map((category, index) => {
-                            const isCategoryOpen = mobileProductCategoryOpen === category.label;
+                        <div className="rounded-[22px] bg-[#E8F4FF] px-5 py-5 flex flex-col gap-5">
+
+                          {productMenu.map((category) => {
+                            const isCategoryOpen =
+                              mobileProductCategoryOpen === category.label;
+
                             return (
-                              <div key={category.label} className="flex flex-col gap-2">
-                                <button
-                                  type="button"
-                                  className={`flex items-center justify-between text-sm font-semibold text-[#0C3C60] ${isCategoryOpen ? "text-[#0A2A66]" : ""}`}
-                                  onClick={() => handleMobileProductCategoryToggle(category.label)}
-                                  aria-expanded={isCategoryOpen}
+                              <div key={category.label} className="flex flex-col gap-3">
+
+                                {/* 🔥 FIX: Entire row clickable */}
+                                <div
+                                  onClick={() =>
+                                    handleMobileProductCategoryToggle(category.label)
+                                  }
+                                  className="flex items-center justify-between text-sm font-semibold text-[#0C3C60] cursor-pointer"
                                 >
                                   <span>{category.label}</span>
                                   <ChevronDownIcon
-                                    className={`w-3 h-3 text-[#0C3C60] transition-transform ${isCategoryOpen ? "rotate-180" : ""}`}
+                                    className={`w-4 h-4 transition-transform ${isCategoryOpen ? "rotate-180" : ""
+                                      }`}
                                   />
-                                </button>
+                                </div>
+
                                 {isCategoryOpen && (
-                                  <div className="pl-1 flex flex-col gap-1 text-[13px] font-medium text-[#0C3C60]">
+                                  <div className="flex flex-col gap-2 text-[14px] font-medium text-[#0C3C60]">
                                     {category.items.map((sub) => (
-                                      <span key={sub}>{sub}</span>
+                                      <span
+                                        key={sub}
+                                        className="cursor-pointer active:opacity-60"
+                                      >
+                                        {sub}
+                                      </span>
                                     ))}
                                   </div>
                                 )}
-                                {index !== productMenu.length - 1 && (
-                                  <div className="h-px bg-[#0C3C60]/30" />
-                                )}
+
                               </div>
                             );
                           })}
+
                         </div>
                       )}
                     </div>
                   );
                 })}
+
+                <img
+                  src={yellowstar1}
+                  alt="star"
+                  className="absolute right-6 bottom-4 w-[70px] pointer-events-none"
+                />
+
               </nav>
             </div>
           )}
@@ -439,6 +480,18 @@ export const Homepage = () => {
       {/* Main Content Container - Flowing smoothly */}
       <div className="relative w-full ">
 
+
+        <style>
+          {`
+  @media (max-width: 640px) {
+    .bottom-star {
+      left: -23px !important;
+      bottom: -44px !important;
+    }
+  }
+  
+`}
+        </style>
         {/* Quiz Section */}
         <section
           className="
@@ -467,49 +520,68 @@ export const Homepage = () => {
   ">
 
             {/* ⭐ TOP STAR — NOW VISIBLE ON PHONE */}
-            <img
-              className="
-        absolute
-        top-[-30px]
-        right-[10px]
-        w-[70px]
-        h-[75px]
-        sm:w-[100px]
-        sm:h-[110px]
-        lg:w-[130px]
-        lg:h-[144px]
-        rotate-[15deg]
-        z-10
-      "
-              src="/figmaAssets/cyan-2--1--1.png"
-              alt="star"
-            />
 
-            {/* MAIN IMAGE */}
-            <img
-              className="w-full h-auto rounded-[20px] sm:rounded-[25px] lg:rounded-[30px]"
-              src="/figmaAssets/updated-product-quiz-image-1.png"
-              alt=""
-            />
+            <div className="relative inline-block">
 
-            {/* ⭐ BOTTOM STAR — NOW VISIBLE ON PHONE */}
-            <img
-              className="
-        absolute
-        bottom-[-20px]
-        left-[10px]
-        w-[70px]
-        h-[75px]
-        sm:w-[110px]
-        sm:h-[115px]
-        lg:w-[189px]
-        lg:h-[194px]
-        rotate-[-18deg]
-        z-10
-      "
-              src="/figmaAssets/cyan-2--1--1.png"
-              alt="star"
-            />
+              {/* ⭐ TOP STAR */}
+              <img
+                className="
+      absolute
+      -top-12
+      
+      w-[70px]
+      h-[75px]
+      sm:w-[100px]
+      sm:h-[110px]
+      lg:w-[130px]
+      lg:h-[144px]
+      rotate-[15deg]
+      z-10
+    "
+                src="/figmaAssets/cyan-2--1--1.png"
+                alt="star"
+              />
+
+              {/* MAIN IMAGE */}
+              <img
+                className="
+    
+
+          /* 📱 pull image down to overlap yellow */
+    sm:mb-0           /* reset for tablet+ */
+
+    w-full
+    h-auto
+    rounded-[20px]
+    sm:rounded-[25px]
+    lg:rounded-[30px]
+  "
+                src="/figmaAssets/updated-product-quiz-image-1.png"
+                alt=""
+              />
+
+              {/* ⭐ BOTTOM STAR */}
+              <img
+                className="
+      absolute
+      -bottom-6
+      -left-6
+      w-[70px]
+      h-[75px]
+      sm:w-[110px]
+      sm:h-[115px]
+      lg:w-[189px]
+      lg:h-[194px]
+      rotate-[-18deg]
+      z-10
+      bottom-[-90px]  /* 📱 move up on phone */
+      left-[450px]
+    "
+                src="/figmaAssets/cyan-2--1--1.png"
+                alt="star"
+              />
+
+            </div>
           </div>
 
           {/* TEXT SIDE */}
@@ -579,7 +651,7 @@ export const Homepage = () => {
                   The only low calorie sweetener made in the USA
                 </p>
                 <img
-                  className="absolute -left-3 -top-4 w-[55px] h-[60px] rotate-[12deg]"
+                  className="absolute -left-3 -top-4 w-[55px] h-[60px] rotate-[12deg] max-[500px]:top-[2rem]"
                   src="/figmaAssets/cyan-2--1--1.png"
                   alt=""
                 />
@@ -1588,3 +1660,4 @@ export const Homepage = () => {
     </div>
   );
 };
+
