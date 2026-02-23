@@ -560,8 +560,20 @@ export const Homepage = () => {
     .cyanWave {
       margin-top: -50px !important; /* 🔥 change value if needed */
       
+      }
+    .take_a_short{
+          text-align:left !important;
+      }
+    .TEXT_SIDE{
+          text-align:left !important;
+      }
+      .top_star2{
+          top: -4rem;
+    left: -1rem;
+
+      }
     }
-  }
+ 
 `}
       </style>
       <div className="relative w-full pointer-events-none z-10 topwavetext">
@@ -597,7 +609,7 @@ export const Homepage = () => {
   @media (max-width: 646px) {
     .quiz-main-img {
       position: absolute;
-      top: -10px;
+      top: -80px;
       left: 50%;
       transform: translate(-50%, 50px);
       width: 260px;
@@ -715,9 +727,9 @@ export const Homepage = () => {
     .find_your1 {
         height: 57px !important;
         width: 91% !important;
-        left: -50px !important;
+   
         margin-bottom: 10px !important;
-        margin-left: 10px !important;
+       
         margin-top: 90px !important;
     }
 
@@ -751,9 +763,7 @@ export const Homepage = () => {
   .star_img {
     top: 19rem !important;
   }
-    .top_star2 {
-        margin-top: 10px !important;
-    }
+    
     .topwavetext{
     padding-bottom: 0px !important;
     }
@@ -767,6 +777,36 @@ export const Homepage = () => {
         .top_star2{
         top: 11rem !important;
         }
+}
+
+@media (max-width: 384px) {
+  .top_star2 {
+        margin-top: -19px !important;
+    }
+}
+@media (max-width: 380px) {
+  .top_star2 {
+        margin-top: 20px !important;
+    }
+}
+@media (max-width: 375px) {
+          .Oval_Image{
+            width: 120px !important;
+            height: 100px !important;
+          }
+          .Oval_Image_img{
+            width: 100px !important;
+            height: 80px !important;
+          }
+          .Instagram_post{
+            width: 270px !important;
+            height: 300px !important;
+          }
+          .instagram-card_style_css{
+            width: 270px !important;
+            height: 300px !important;
+          }
+
 }
 
 `}
@@ -895,7 +935,7 @@ export const Homepage = () => {
           </div>
 
           {/* TEXT SIDE */}
-          <div className="max-w-[500px] text-center lg:text-left side_text">
+          <div className="TEXT_SIDE max-w-[500px] text-center lg:text-left side_text">
 
             <h2 className=" find_your1 mb-4 sm:mb-6 flex justify-center lg:justify-start max-[537px]:w-[120%]  max-[537px]:h-[264px]">
               <img
@@ -905,7 +945,7 @@ export const Homepage = () => {
               />
             </h2>
 
-            <p className="text-brand-color3  leading-tight sm:text-lg sm:leading-normal lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
+            <p className="take_a_short text-brand-color3  leading-tight sm:text-lg sm:leading-normal lg:text-xl font-medium mb-6 sm:mb-8 lg:mb-10">
               Take a short quiz to find out which Splenda products are right for you.
             </p>
 
@@ -1465,7 +1505,7 @@ export const Homepage = () => {
                 <div
                   key={index}
                   className="
-            instagram-card
+            instagram-card instagram-card_style_css
             relative
             shrink-0
             [width:clamp(330px,75vw,420px)]
@@ -1518,7 +1558,7 @@ export const Homepage = () => {
                   {/* IMAGE */}
                   <img
                     src={img.src}
-                    className="w-full h-[410px] object-cover block rounded-[16px]"
+                    className="Instagram_post w-full h-[410px] object-cover block rounded-[16px]"
                     alt="Instagram post"
                   />
 
@@ -1743,7 +1783,7 @@ export const Homepage = () => {
 
                   {/* Oval Image */}
                   <div className="shrink-0 flex justify-center items-center">
-                    <div className="
+                    <div className=" Oval_Image
   w-[190px]
   h-[150px]
   bg-white
@@ -1757,7 +1797,7 @@ export const Homepage = () => {
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="max-w-[170px] max-h-[135px] object-contain"
+                        className="Oval_Image_img max-w-[170px] max-h-[135px] object-contain"
                       />
                     </div>
                   </div>
