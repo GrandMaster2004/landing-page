@@ -97,7 +97,7 @@ const instagramImages = [
 
 const merchProducts = [
   {
-    title: "Splenda ECR Limited Edition Replica Pit Crew Shirt, Men's Large",
+    title: "Splenda ECR Limited Edition Replica Pit Crew Shirt, Men's",
     price: "$75.00",
     image: "/figmaAssets/ellipse 935.webp",
   },
@@ -669,6 +669,7 @@ export const Homepage = () => {
         position: absolute;
           top: 250rem !important;
           }
+       
       }
        
 
@@ -701,9 +702,7 @@ export const Homepage = () => {
 
 
 @media (max-width: 380px) {
-            .star_img {
-        top: 19rem !important;
-    }
+        
             .cyanWave{
             position: absolute !important;
             top: 4rem !important;
@@ -750,7 +749,7 @@ export const Homepage = () => {
   }
 
   .star_img {
-    top: 15rem !important;
+    top: 19rem !important;
   }
     .top_star2 {
         margin-top: 10px !important;
@@ -1085,9 +1084,13 @@ export const Homepage = () => {
         rounded-full font-bold border-2 border-brand-color3 whitespace-nowrap
         shadow-[2px_2px_0px_#0C3C60]
         transition-all duration-200
+
+        md:hover:!bg-[#ebfaff]
+        md:hover:!text-brand-color3
+
         ${activeTab === label
                         ? "bg-[#ebfaff] text-brand-color3"
-                        : "bg-transparent text-brand-color3 "
+                        : "bg-transparent text-brand-color3"
                       }
       `}
                   >
@@ -1462,40 +1465,40 @@ export const Homepage = () => {
                 <div
                   key={index}
                   className="
-            instagram-card
-            relative
-            shrink-0
-            [width:clamp(330px,75vw,420px)]
-            rounded-[16px]
-            overflow-visible
-            bg-white
-            shadow-[0_4px_15px_rgba(0,0,0,0.1)]
-          "
+        instagram-card
+        relative
+        shrink-0
+        [width:clamp(330px,75vw,420px)]
+        rounded-[16px]
+        overflow-visible
+        bg-white
+        shadow-[0_4px_15px_rgba(0,0,0,0.1)]
+      "
                 >
 
                   {/* HEADER */}
                   <div
                     className="
-              instagram-header
-              absolute
-              top-0
-              left-0
-              right-0
-              translate-y-[-100%]
-              bg-white
-              py-3
-              px-[14px]
-              flex
-              items-center
-              justify-between
-              opacity-0
-              transition-transform
-              duration-300
-              ease-out
-              z-20
-              shadow-md
-              rounded-t-[16px]
-            "
+          instagram-header
+          absolute
+          top-0
+          left-0
+          right-0
+          translate-y-[-100%]
+          bg-white
+          py-3
+          px-[14px]
+          flex
+          items-center
+          justify-between
+          opacity-0
+          transition-all
+          duration-500
+          ease-[cubic-bezier(0.22,1,0.36,1)]
+          z-20
+          shadow-md
+          rounded-t-[16px]
+        "
                   >
                     <div className="flex items-center gap-[10px]">
                       <div className="w-8 h-8 rounded-full bg-white border flex items-center justify-center">
@@ -1522,34 +1525,31 @@ export const Homepage = () => {
                   {/* FOOTER */}
                   <div
                     className="
-              instagram-footer
-              absolute
-              bottom-0
-              left-0
-              right-0
-              translate-y-[100%]
-              bg-white
-              py-3
-              px-[14px]
-              flex
-              justify-between
-              items-center
-              opacity-0
-              transition-transform
-              duration-300
-              ease-out
-              z-20
-              shadow-md
-              rounded-b-[16px]
-            "
+          instagram-footer
+          absolute
+          bottom-0
+          left-0
+          right-0
+          translate-y-[100%]
+          bg-white
+          py-3
+          px-[14px]
+          flex
+          justify-between
+          items-center
+          opacity-0
+          transition-all
+          duration-500
+          ease-[cubic-bezier(0.22,1,0.36,1)]
+          z-20
+          shadow-md
+          rounded-b-[16px]
+        "
                   >
                     <div className="flex gap-3">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="#ed4956">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                       </svg>
-                      <svg id="Layer_1" width="16" height="22" fill="#262626" stroke="#262626" strokeWidth="1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.97 122.88"><title>instagram-comment</title><path d="M61.44,0a61.46,61.46,0,0,1,54.91,89l6.44,25.74a5.83,5.83,0,0,1-7.25,7L91.62,115A61.43,61.43,0,1,1,61.44,0ZM96.63,26.25a49.78,49.78,0,1,0-9,77.52A5.83,5.83,0,0,1,92.4,103L109,107.77l-4.5-18a5.86,5.86,0,0,1,.51-4.34,49.06,49.06,0,0,0,4.62-11.58,50,50,0,0,0-13-47.62Z" /></svg>
-                      <svg id="Layer_1" data-name="Layer 1" width="16" height="22" fill="#262626" stroke="#262626" strokeWidth="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.3"><title>instagram-share</title><path d="M96.14,12.47l-76.71-1.1,28.3,27.85L96.14,12.47ZM53.27,49l9.88,39.17L102.1,22,53.27,49ZM117,1.6a5.59,5.59,0,0,1,4.9,8.75L66.06,105.21a5.6,5.6,0,0,1-10.44-1.15L41.74,49,1.67,9.57A5.59,5.59,0,0,1,5.65,0L117,1.6Z" /></svg>
-
                     </div>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#262626" strokeWidth="2">
                       <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -1826,7 +1826,7 @@ export const Homepage = () => {
                 className="flex flex-col items-center text-center w-full"
               >
                 {/* Oval Container */}
-                <div className="w-[220px] h-[150px] sm:w-[250px] sm:h-[100px] lg:w-[280px] lg:h-[190px] min-[1100px]:max-[1279px]:w-[260px] min-[1100px]:max-[1279px]:h-[178px] lg:max-[1279px]:w-[260px] lg:max-[1279px]:h-[178px] xl:w-[370px] xl:h-[250px] bg-white rounded-[250%] rotate-[-5deg] flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 shadow-lg">
+                <div className="w-[220px] h-[150px] sm:w-[250px] sm:h-[145px] lg:w-[280px] lg:h-[190px] min-[1100px]:max-[1279px]:w-[260px] min-[1100px]:max-[1279px]:h-[178px] lg:max-[1279px]:w-[260px] lg:max-[1279px]:h-[178px] xl:w-[370px] xl:h-[250px] bg-white rounded-[250%] rotate-[-5deg] flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 shadow-lg">
                   <img
                     src={product.image}
                     alt={product.title}
