@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Sparkles">
+  <defs>
+    <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#55d5ff" />
+      <stop offset="100%" stop-color="#0da5ff" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="128" height="128" fill="transparent" />
+  <g fill="url(#sparkleGradient)" filter="url(#glow)">
+    <path d="M0 -20 L5 -5 20 0 5 5 0 20 -5 5 -20 0 -5 -5 Z" transform="translate(84 40) scale(1.25)" />
+    <path d="M0 -18 L4.5 -4.5 18 0 4.5 4.5 0 18 -4.5 4.5 -18 0 -4.5 -4.5 Z" transform="translate(48 82) scale(0.9)" />
+    <path d="M0 -12 L3 -3 12 0 3 3 0 12 -3 3 -12 0 -3 -3 Z" transform="translate(28 44) scale(0.85)" />
+  </g>
+</svg>
